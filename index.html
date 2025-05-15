@@ -1,114 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Aille Official Website</title>
-<style>
-  :root {
-    --skyblue: #87ceeb;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #a8d0ff, #ffffff);
-    color: #333;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387CEEB"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
-  }
-  header {
-    background-color: var(--skyblue);
-    padding: 20px;
-    color: white;
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-  }
-  .language-selector {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    user-select: none;
-    z-index: 1000;
-  }
-  .language-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    outline: none;
-  }
-  .language-menu {
-    display: none;
-    position: absolute;
-    top: 45px;
-    right: 0;
-    background: white;
-    border: 2px solid var(--skyblue);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(135,206,235,0.3);
-    overflow: hidden;
-  }
-  .language-menu.show {
-    display: block;
-  }
-  .language-menu button {
-    display: block;
-    width: 100%;
-    border: none;
-    background: none;
-    padding: 10px 20px;
-    text-align: left;
-    font-weight: bold;
-    color: var(--skyblue);
-    cursor: pointer;
-    transition: background 0.3s;
-    font-size: 1rem;
-  }
-  .language-menu button:hover {
-    background: var(--skyblue);
-    color: white;
-  }
-  main {
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  /* 捲軸樣式 */
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #e0f0ff;
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--skyblue);
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #66b2ff;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aille Official Website</title>
+  <style>
+    :root {
+      --skyblue: #87ceeb;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #a8d0ff, #ffffff);
+      color: #333;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387CEEB"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
+    }
+
+    header {
+      background-color: var(--skyblue);
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: 2em;
+      font-family: 'Brush Script MT', cursive;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .language-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .language-button svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--skyblue);
+    }
+
+    .language-menu {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: white;
+      border: 2px solid var(--skyblue);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .language-menu.show {
+      display: block;
+    }
+
+    .language-menu button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      color: var(--skyblue);
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .language-menu button:hover {
+      background-color: var(--skyblue);
+      color: white;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e0f0ff;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--skyblue);
+      border-radius: 6px;
+    }
+
+  </style>
 </head>
 <body>
 
-<header>
-  Aille Official Website
-</header>
+<header>Aille Official Website</header>
 
 <div class="language-selector">
-  <button class="language-button" aria-label="Select Language" title="Select Language" id="langBtn">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#87ceeb" viewBox="0 0 24 24" width="32" height="32">
-      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10
-               10-4.477 10-10S17.523 2 12 2zm0 18a7.978 7.978 0 01-6.32-3.142c.122-.114.24-.23.353-.348
-               1.195-1.268 3.516-3.793 5.967-4.418a5.974 5.974 0 016.227 2.115A7.978 7.978 0 0112 20z"/>
+  <button class="language-button" id="langBtn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+               10-4.48 10-10S17.52 2 12 2zm0 18
+               c-4.41 0-8-3.59-8-8s3.59-8 8-8
+               8 3.59 8 8-3.59 8-8 8zm0-14
+               c-1.66 0-3 2.69-3 6s1.34 6 3 6
+               3-2.69 3-6-1.34-6-3-6z"/>
     </svg>
   </button>
   <div class="language-menu" id="languageMenu">
-    <button data-lang="en">English</button>
     <button data-lang="zh">中文</button>
+    <button data-lang="en">English</button>
     <button data-lang="id">Bahasa Indonesia</button>
     <button data-lang="fr">Français</button>
     <button data-lang="ja">日本語</button>
@@ -122,15 +129,14 @@
 </main>
 
 <script>
-  // 語言選單邏輯
   const texts = {
-    en: {
-      title: "Welcome to Aille's Official Website",
-      content: "This is your personal official homepage to showcase your style and charm!"
-    },
     zh: {
       title: "歡迎來到 Aille 官方網站",
       content: "這是妳的個人官方網站主頁，展現妳的風格與魅力！"
+    },
+    en: {
+      title: "Welcome to Aille's Official Website",
+      content: "This is your personal official homepage to showcase your style and charm!"
     },
     id: {
       title: "Selamat datang di Situs Resmi Aille",
@@ -150,54 +156,27 @@
     }
   };
 
-  const langBtn = document.getElementById('langBtn');
-  const langMenu = document.getElementById('languageMenu');
-  const content = document.getElementById('content');
+  const langBtn = document.getElementById("langBtn");
+  const langMenu = document.getElementById("languageMenu");
+  const content = document.getElementById("content");
 
-  langBtn.addEventListener('click', () => {
-    langMenu.classList.toggle('show');
+  langBtn.addEventListener("click", () => {
+    langMenu.classList.toggle("show");
   });
 
-  langMenu.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
+  document.querySelectorAll(".language-menu button").forEach(button => {
+    button.addEventListener("click", () => {
+      const lang = button.getAttribute("data-lang");
       if (texts[lang]) {
         content.innerHTML = `<h1>${texts[lang].title}</h1><p>${texts[lang].content}</p>`;
       }
-      langMenu.classList.remove('show');
+      langMenu.classList.remove("show");
     });
   });
 
-  document.addEventListener('click', e => {
-    if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-      langMenu.classList.remove('show');
-    }
-  });
-
-  // 禁止右鍵選單
-  document.addEventListener('contextmenu', event => event.preventDefault());
-
-  // 禁止特定鍵盤組合（F12、Ctrl+Shift+I、Ctrl+U、Ctrl+S等）
-  document.addEventListener('keydown', function(e) {
-    // F12
-    if (e.key === 'F12') {
-      e.preventDefault();
-    }
-    // Ctrl+Shift+I or Ctrl+Shift+J (DevTools)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) {
-      e.preventDefault();
-    }
-    // Ctrl+U (查看原始碼)
-    if (e.ctrlKey && e.key === 'u') {
-      e.preventDefault();
-    }
-    // Ctrl+S (儲存網頁)
-    if (e.ctrlKey && e.key === 's') {
-      e.preventDefault();
-    }
-    // Ctrl+Shift+C (開啟檢查器)
-    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-      e.preventDefault();
+  document.addEventListener("click", e => {
+    if (!langMenu.contains(e.target) && !langBtn.contains(e.target)) {
+      langMenu.classList.remove("show");
     }
   });
 </script>
