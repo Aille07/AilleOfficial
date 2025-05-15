@@ -8,7 +8,6 @@
   :root {
     --skyblue: #87ceeb;
   }
-
   body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -16,7 +15,6 @@
     color: #333;
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387CEEB"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
   }
-
   header {
     background-color: var(--skyblue);
     padding: 20px;
@@ -25,8 +23,6 @@
     font-weight: bold;
     text-align: center;
   }
-
-  /* 右上角語言選單容器 */
   .language-selector {
     position: fixed;
     top: 20px;
@@ -34,8 +30,6 @@
     user-select: none;
     z-index: 1000;
   }
-
-  /* 地球icon按鈕 */
   .language-button {
     background: none;
     border: none;
@@ -45,8 +39,6 @@
     padding: 0;
     outline: none;
   }
-
-  /* 下拉選單 */
   .language-menu {
     display: none;
     position: absolute;
@@ -58,11 +50,9 @@
     box-shadow: 0 4px 8px rgba(135,206,235,0.3);
     overflow: hidden;
   }
-
   .language-menu.show {
     display: block;
   }
-
   .language-menu button {
     display: block;
     width: 100%;
@@ -76,18 +66,15 @@
     transition: background 0.3s;
     font-size: 1rem;
   }
-
   .language-menu button:hover {
     background: var(--skyblue);
     color: white;
   }
-
   main {
     padding: 40px 20px;
     max-width: 900px;
     margin: 0 auto;
   }
-
   /* 捲軸樣式 */
   ::-webkit-scrollbar {
     width: 12px;
@@ -111,10 +98,8 @@
   Aille Official Website
 </header>
 
-<!-- 語言選單 -->
 <div class="language-selector">
   <button class="language-button" aria-label="Select Language" title="Select Language" id="langBtn">
-    <!-- SVG 地球圖示 -->
     <svg xmlns="http://www.w3.org/2000/svg" fill="#87ceeb" viewBox="0 0 24 24" width="32" height="32">
       <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10
                10-4.477 10-10S17.523 2 12 2zm0 18a7.978 7.978 0 01-6.32-3.142c.122-.114.24-.23.353-.348
@@ -137,6 +122,7 @@
 </main>
 
 <script>
+  // 語言選單邏輯
   const texts = {
     en: {
       title: "Welcome to Aille's Official Website",
@@ -168,12 +154,10 @@
   const langMenu = document.getElementById('languageMenu');
   const content = document.getElementById('content');
 
-  // 切換選單顯示
   langBtn.addEventListener('click', () => {
     langMenu.classList.toggle('show');
   });
 
-  // 點選語言按鈕切換文字
   langMenu.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
@@ -184,10 +168,36 @@
     });
   });
 
-  // 點外面關閉選單
   document.addEventListener('click', e => {
     if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
       langMenu.classList.remove('show');
+    }
+  });
+
+  // 禁止右鍵選單
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // 禁止特定鍵盤組合（F12、Ctrl+Shift+I、Ctrl+U、Ctrl+S等）
+  document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+    }
+    // Ctrl+Shift+I or Ctrl+Shift+J (DevTools)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) {
+      e.preventDefault();
+    }
+    // Ctrl+U (查看原始碼)
+    if (e.ctrlKey && e.key === 'u') {
+      e.preventDefault();
+    }
+    // Ctrl+S (儲存網頁)
+    if (e.ctrlKey && e.key === 's') {
+      e.preventDefault();
+    }
+    // Ctrl+Shift+C (開啟檢查器)
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+      e.preventDefault();
     }
   });
 </script>
