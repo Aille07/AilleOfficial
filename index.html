@@ -15,11 +15,7 @@
     font-family: 'Georgia', serif;
     background: linear-gradient(135deg, #a8d0ff, #ffffff);
     color: #333;
-    body {
-  /* 其他樣式保持不變 */
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387ceeb"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
-}
-
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387ceeb"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
   }
 
   header {
@@ -181,7 +177,6 @@
     langMenu.setAttribute('aria-hidden', !isShown);
   }
 
-  // 點擊語言後的事件範例 (可自行擴充)
   langMenu.addEventListener('click', e => {
     if(e.target.tagName === 'LI') {
       alert('你選擇的語言是：' + e.target.textContent);
@@ -189,7 +184,6 @@
     }
   });
 
-  // 鍵盤操作支援
   langMenu.addEventListener('keydown', e => {
     if(e.key === 'Enter' && e.target.tagName === 'LI') {
       alert('你選擇的語言是：' + e.target.textContent);
@@ -197,7 +191,6 @@
     }
   });
 
-  // 點頁面空白處關閉語言選單
   document.addEventListener('click', e => {
     if(!e.target.closest('.language-selector')) {
       langMenu.classList.remove('show');
