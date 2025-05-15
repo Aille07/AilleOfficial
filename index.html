@@ -1,239 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aille Official</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>Support Messages for Aille</title>
   <style>
-    /* 背景天空藍 */
     body {
       margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #a0d8f7; /* 天空藍 */
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      cursor: url('https://i.imgur.com/W3e7b6A.png'), auto; /* 天空藍星星游標 */
+      font-family: Arial, sans-serif;
+      background-color: #d9f1ff; /* 天空藍背景 */
+      color: #333;
+      cursor: url('https://emojicursor.app/assets/emoji/1f97a.png'), auto; /* 可愛游標圖案，可替換 */
+      overflow-y: scroll;
     }
 
-    /* 卷軸 */
+    /* 捲軸樣式 */
     ::-webkit-scrollbar {
-      width: 12px;
+      width: 10px;
     }
-    ::-webkit-scrollbar-thumb {
-      background-color: #3399ff; /* 天空藍 */
-      border-radius: 10px;
-    }
+
     ::-webkit-scrollbar-track {
-      background-color: #cce6ff;
+      background: #d9f1ff; /* 天空藍 */
     }
 
-    /* 大標題華麗字型 */
-    .site-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 56px;
-      text-align: center;
-      color: #007acc; /* 深天空藍 */
-      margin-top: 50px;
-      text-shadow: 0 0 8px #66c2ff;
+    ::-webkit-scrollbar-thumb {
+      background-color: #66c3ff;
+      border-radius: 5px;
     }
 
-    /* 應援留言區標題 */
-    .comment-title {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 25px;
-      color: #004c99;
-    }
-
-    /* 留言區外框 */
-    .comment-section {
-      width: 90%;
+    .container {
+      width: 100%;
       max-width: 600px;
-      margin: 0 auto 50px auto;
-      background: #d9f0ff;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0, 122, 204, 0.4);
-    }
-
-    /* 表單 */
-    #comment-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    #comment-form input,
-    #comment-form textarea {
-      padding: 15px;
-      font-size: 17px;
-      border-radius: 10px;
-      border: 2px solid #3399ff;
-      font-family: 'Quicksand', sans-serif;
-      resize: vertical;
-    }
-
-    #comment-form input::placeholder,
-    #comment-form textarea::placeholder {
-      color: #77bbff;
-    }
-
-    #comment-form button {
-      background-color: #3399ff;
-      color: white;
-      font-weight: bold;
-      padding: 13px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #comment-form button:hover {
-      background-color: #007acc;
-    }
-
-    /* 留言顯示 */
-    #comments-container {
-      margin-top: 30px;
-      color: #003366;
-      font-weight: 600;
-    }
-    #comments-container div {
-      padding: 10px 12px;
-      background: #bbdefb;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
       border-radius: 8px;
-      margin-bottom: 12px;
-      box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    /* 地球語言選單 */
-    .language-selector {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10000;
+    h1 {
+      text-align: center;
+      color: #007acc;
     }
-    .language-button {
-      background: none;
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #66c3ff;
       border: none;
-      font-size: 28px;
-      cursor: pointer;
-      user-select: none;
-      color: #004c99;
-      text-shadow: 0 0 5px #66c2ff;
-    }
-    .language-options {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 45px;
-      right: 0;
-      background: #d0e7ff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
-      overflow: hidden;
-      min-width: 130px;
-    }
-    .language-options.show {
-      display: flex;
-    }
-    .language-options button {
-      padding: 10px 15px;
-      border: none;
-      background: none;
-      font-size: 14px;
-      text-align: left;
-      color: #004c99;
-      cursor: pointer;
-      transition: background-color 0.25s ease;
-    }
-    .language-options button:hover {
-      background-color: #3399ff;
       color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
+    button:hover {
+      background-color: #4aaee0;
+    }
+
+    .language-selector {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background-color: #e6f7ff;
+    }
   </style>
 </head>
-<body oncontextmenu="return false;">
-  <!-- 地球語言選單 -->
-  <div class="language-selector">
-    <button class="language-button" id="langBtn" aria-label="Select Language">🌐</button>
-    <div class="language-options" id="langOptions" role="menu" aria-hidden="true" aria-labelledby="langBtn">
-      <button role="menuitem" onclick="alert('語言切換：中文')">中文</button>
-      <button role="menuitem" onclick="alert('Language: English')">English</button>
-      <button role="menuitem" onclick="alert('Langue: Français')">Français</button>
-      <button role="menuitem" onclick="alert('言語: 日本語')">日本語</button>
-      <button role="menuitem" onclick="alert('Bahasa: Indonesia')">Bahasa Indonesia</button>
-      <button role="menuitem" onclick="alert('언어: 한국어')">한국어</button>
+<body>
+
+  <div class="container">
+    <div class="language-selector">
+      🌐
+      <select>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
     </div>
+
+    <h1>Support Messages for Aille</h1>
+    <input type="text" placeholder="Your name">
+    <textarea placeholder="What do you want to say?"></textarea>
+    <button>Send</button>
   </div>
 
-  <!-- 留言區 -->
-  <div class="comment-section" role="main" aria-label="Support Message Section">
-    <h1 class="site-title">Aille Official</h1>
-    <h2 class="comment-title">📝 Aille 應援留言區</h2>
-
-    <form id="comment-form" aria-label="Support message form">
-      <input type="text" id="name" placeholder="Your name" aria-label="Your name" required />
-      <textarea id="message" rows="4" placeholder="What do you want to say" aria-label="Your message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-
-    <div id="comments-container" aria-live="polite" aria-relevant="additions"></div>
-  </div>
-
-  <script>
-    // 游標圖片備註：
-    // https://i.imgur.com/W3e7b6A.png 是一顆天空藍星星透明PNG，可以換網址自訂。
-
-    // 地球語言選單開關
-    const langBtn = document.getElementById("langBtn");
-    const langOptions = document.getElementById("langOptions");
-
-    langBtn.addEventListener("click", () => {
-      langOptions.classList.toggle("show");
-      const expanded = langBtn.getAttribute("aria-expanded") === "true";
-      langBtn.setAttribute("aria-expanded", !expanded);
-      langOptions.setAttribute("aria-hidden", expanded);
-    });
-
-    // 留言表單功能
-    const form = document.getElementById("comment-form");
-    const commentsContainer = document.getElementById("comments-container");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const nameInput = document.getElementById("name");
-      const messageInput = document.getElementById("message");
-      const name = nameInput.value.trim();
-      const message = messageInput.value.trim();
-
-      if (!name || !message) return;
-
-      const commentDiv = document.createElement("div");
-      commentDiv.innerHTML = `<strong>${escapeHTML(name)}</strong>: ${escapeHTML(message)}`;
-      commentsContainer.prepend(commentDiv);
-
-      form.reset();
-    });
-
-    // 防止XSS攻擊的簡單函式
-    function escapeHTML(str) {
-      return str.replace(/[&<>"']/g, (m) => {
-        switch(m) {
-          case '&': return "&amp;";
-          case '<': return "&lt;";
-          case '>': return "&gt;";
-          case '"': return "&quot;";
-          case "'": return "&#39;";
-          default: return m;
-        }
-      });
-    }
-  </script>
 </body>
 </html>
