@@ -1,133 +1,111 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aille Official</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
+  <meta charset="UTF-8">
+  <title>Aille Official Website</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #d6f0ff, #ffffff);
+      font-family: 'Segoe UI', cursive;
+      background: linear-gradient(to bottom right, #e0f7ff, #f5fbff);
+      color: #333;
       margin: 0;
       padding: 0;
-      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat937.cur'), auto;
+      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat983.cur'), auto;
     }
 
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #87cefa;
-      border-radius: 5px;
+    /* 禁止右鍵和選取 */
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
-    header {
-      background: #87cefa;
-      padding: 20px;
+    body::selection {
+      background: none;
+    }
+
+    body:context-menu {
+      display: none;
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
       text-align: center;
-      color: white;
-    }
-
-    header h1 {
-      font-family: 'Times New Roman', serif;
-      font-size: 3em;
-      text-shadow: 0 0 10px #fff, 0 0 20px #add8e6;
+      font-size: 2.5em;
+      margin-top: 40px;
+      color: #3399ff;
+      text-shadow: 0 0 10px #99ccff;
     }
 
     .language-selector {
       position: fixed;
       top: 20px;
       right: 20px;
+      z-index: 999;
     }
 
     .language-selector button {
+      font-size: 24px;
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1.5em;
+      color: #3399ff;
+      transition: color 0.3s;
+    }
+
+    .language-selector button:hover {
+      color: #66ccff;
     }
 
     .language-menu {
       display: none;
       position: absolute;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      right: 0;
       top: 40px;
-      z-index: 999;
+      right: 0;
+      background: #ffffffdd;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 5px;
     }
 
     .language-menu button {
       display: block;
-      padding: 8px 15px;
       background: none;
       border: none;
       width: 100%;
       text-align: left;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #3399ff;
       cursor: pointer;
     }
 
-    .comment-section {
-      background-color: #e0f4ff;
-      padding: 30px;
-      border-radius: 10px;
-      margin: 40px;
+    .language-menu button:hover {
+      background-color: #e6f7ff;
     }
 
-    .comment-section h2 {
-      color: #2a93d5;
+    /* 滾動條樣式 */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
 
-    .comment-section input,
-    .comment-section textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
+    ::-webkit-scrollbar-thumb {
+      background: #66ccff;
       border-radius: 5px;
-      border: 1px solid #b3dfff;
-      background-color: #f7fbff;
     }
 
-    .comment-section button {
-      background-color: #58c3ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .comment-section button:hover {
-      background-color: #40a9e9;
-    }
-
-    footer {
-      background: #87cefa;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
+    ::-webkit-scrollbar-track {
+      background: #f0f9ff;
     }
   </style>
-  <script>
-    document.addEventListener("contextmenu", function(e) {
-      e.preventDefault();
-    });
-    document.addEventListener("keydown", function(e) {
-      if (e.ctrlKey && (e.key === "u" || e.key === "s")) {
-        e.preventDefault();
-      }
-    });
-  </script>
 </head>
-<body>
-  <header>
-    <h1>Aille Official</h1>
-  </header>
+<body oncontextmenu="return false">
 
-  <!-- 地球 icon 語言選單 -->
+  <h1>Aille Official Website</h1>
+
+  <!-- 語言選單 -->
   <div class="language-selector">
     <button onclick="toggleLanguageMenu()">🌐</button>
     <div class="language-menu" id="languageMenu">
@@ -139,64 +117,26 @@
     </div>
   </div>
 
-  <main>
-    <section class="comment-section">
-      <h2 id="commentTitle">留言區（Aille應援區）</h2>
-      <form id="commentForm">
-        <input type="text" id="name" placeholder="你的名字" required />
-        <textarea id="message" placeholder="想說什麼呢？" required></textarea>
-        <button type="submit">送出留言</button>
-      </form>
-      <div id="comments"></div>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Aille Entertainment. All rights reserved.
-  </footer>
-
   <script>
-    // 語言切換功能
     function toggleLanguageMenu() {
-      const menu = document.getElementById("languageMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
+      const menu = document.getElementById('languageMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
     function switchLanguage(lang) {
-      const title = document.getElementById("commentTitle");
-      const nameInput = document.getElementById("name");
-      const messageInput = document.getElementById("message");
-      const button = document.querySelector("form button");
-
-      const translations = {
-        zh: ["留言區（Aille應援區）", "你的名字", "想說什麼呢？", "送出留言"],
-        en: ["Support Messages for Aille", "Your name", "What do you want to say?", "Send"],
-        ja: ["応援メッセージ（Aille）", "お名前", "メッセージを入力してください", "送信"],
-        ko: ["응원 메시지 (Aille)", "이름", "메시지를 입력해주세요", "보내기"],
-        fr: ["Messages de soutien pour Aille", "Votre nom", "Que voulez-vous dire ?", "Envoyer"]
-      };
-
-      const [tTitle, tName, tMessage, tBtn] = translations[lang];
-      title.innerText = tTitle;
-      nameInput.placeholder = tName;
-      messageInput.placeholder = tMessage;
-      button.innerText = tBtn;
-
-      document.getElementById("languageMenu").style.display = "none";
+      alert('語言已切換為：' + lang);
+      // 將來可整合 i18n 語言翻譯內容
+      document.getElementById('languageMenu').style.display = 'none';
     }
 
-    // 留言功能
-    document.getElementById("commentForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const message = document.getElementById("message").value;
-
-      const commentBox = document.createElement("div");
-      commentBox.innerHTML = `<p><strong>${name}</strong>：${message}</p>`;
-      document.getElementById("comments").appendChild(commentBox);
-
-      document.getElementById("commentForm").reset();
+    // 點擊畫面其他區域自動關閉語言選單
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('languageMenu');
+      if (!event.target.closest('.language-selector')) {
+        menu.style.display = 'none';
+      }
     });
   </script>
+
 </body>
 </html>
