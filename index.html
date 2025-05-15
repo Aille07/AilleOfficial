@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Support Messages for Aille</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      height: 100%;
-    }
-
-    body {
       font-family: Arial, sans-serif;
       background-color: #d9f1ff; /* 天空藍背景 */
       color: #333;
       cursor: url('https://emojicursor.app/assets/emoji/1f97a.png'), auto;
-      overflow-y: scroll;
+    }
+
+    body {
       position: relative;
+      overflow-x: hidden;
     }
 
     /* 粒子背景 */
@@ -35,17 +33,14 @@
     ::-webkit-scrollbar {
       width: 10px;
     }
-
     ::-webkit-scrollbar-track {
       background: #d9f1ff;
     }
-
     ::-webkit-scrollbar-thumb {
       background-color: #66c3ff;
       border-radius: 5px;
     }
 
-    /* Aille Official 標題 */
     .official-header {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -62,15 +57,15 @@
       margin: 30px auto;
       padding: 20px;
       background-color: white;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: relative;
       z-index: 1;
+      position: relative;
     }
 
     h1 {
       text-align: center;
-      color: #007acc;
+      color: #64b5f6; /* 從照片抓取的標題顏色 */
     }
 
     input, textarea {
@@ -113,6 +108,14 @@
       border: 1px solid #ccc;
       background-color: #e6f7ff;
     }
+
+    /* 頁尾 */
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+      margin: 40px 0 20px 0;
+    }
   </style>
 </head>
 <body>
@@ -120,7 +123,7 @@
   <!-- 粒子背景 -->
   <canvas id="particles"></canvas>
 
-  <!-- Aille Official 標題 -->
+  <!-- 標題 -->
   <div class="official-header">Aille Official</div>
 
   <div class="container">
@@ -137,9 +140,13 @@
     </div>
 
     <h1 id="form-title">Support Messages for Aille</h1>
-    <input id="name" type="text" placeholder="Your name">
+    <input id="name" type="text" placeholder="Your name" />
     <textarea id="message" placeholder="What do you want to say?"></textarea>
     <button id="send-btn">Send</button>
+  </div>
+
+  <div class="footer">
+    © 2025 @Aille Company. All rights reserved.
   </div>
 
   <script>
@@ -183,15 +190,15 @@
     };
 
     function setLanguage(lang) {
-      document.getElementById('form-title').textContent = translations[lang].title;
-      document.getElementById('name').placeholder = translations[lang].name;
-      document.getElementById('message').placeholder = translations[lang].message;
-      document.getElementById('send-btn').textContent = translations[lang].send;
+      document.getElementById("form-title").textContent = translations[lang].title;
+      document.getElementById("name").placeholder = translations[lang].name;
+      document.getElementById("message").placeholder = translations[lang].message;
+      document.getElementById("send-btn").textContent = translations[lang].send;
     }
 
-    // 粒子動畫程式
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
+    // 粒子背景動畫
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
     let particles = [];
 
     function resizeCanvas() {
@@ -200,14 +207,15 @@
     }
 
     function createParticles(num) {
+      particles = [];
       for (let i = 0; i < num; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           r: Math.random() * 2 + 1,
-          dx: (Math.random() - 0.5) * 0.5,
-          dy: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.5
+          dx: (Math.random() - 0.5) * 0.4,
+          dy: (Math.random() - 0.5) * 0.4,
+          opacity: Math.random() * 0.5 + 0.3
         });
       }
     }
@@ -223,25 +231,22 @@
         p.x += p.dx;
         p.y += p.dy;
 
-        // Wrap around edges
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
       }
-
       requestAnimationFrame(drawParticles);
     }
 
     resizeCanvas();
-    createParticles(100);
+    createParticles(120);
     drawParticles();
-    window.addEventListener('resize', () => {
+
+    window.addEventListener("resize", () => {
       resizeCanvas();
-      particles = [];
-      createParticles(100);
+      createParticles(120);
     });
   </script>
-
 </body>
 </html>
