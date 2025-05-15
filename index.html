@@ -43,103 +43,7 @@
       color: #444;
     }
 
-    /* 留言區 */
-    .comment-section {
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto;
-      background: #f5faff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    #comment-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    #comment-form input,
-    #comment-form textarea {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    #comment-form button {
-      background-color: #3399ff;
-      color: white;
-      padding: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    #comment-form button:hover {
-      background-color: #2277cc;
-    }
-
-    #comments-container {
-      margin-top: 20px;
-    }
-
-    /* 多語言選單 */
-    .language-selector {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    .language-button {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .language-options {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 40px;
-      right: 0;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .language-options.show {
-      display: flex;
-    }
-
-    .language-options button {
-      padding: 8px 12px;
-      border: none;
-      background: #fff;
-      cursor: pointer;
-      text-align: left;
-      font-size: 14px;
-    }
-
-    .language-options button:hover {
-      background: #3399ff;
-      color: white;
-    }
-
-    /* 防止右鍵與拖曳圖片下載 */
-    img, a {
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body oncontextmenu="return false;">
+   
   <!-- 地球語言選單 -->
   <div class="language-selector">
     <button class="language-button" id="langBtn">🌐</button>
@@ -153,19 +57,6 @@
     </div>
   </div>
 
-  <!-- 留言區 -->
-  <div class="comment-section">
-    <h1 class="site-title">Aille Official</h1>
-    <h2 class="comment-title">Support messages for Aille</h2>
-
-    <form id="comment-form">
-      <input type="text" id="name" placeholder="Your name" required />
-      <textarea id="message" placeholder="What do you want to say" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-
-    <div id="comments-container"></div>
-  </div>
 
   <!-- 多語言選單 JS -->
   <script>
@@ -190,4 +81,92 @@
     });
   </script>
 </body>
+    <section class="support-section">
+  <h2>📝 Aille 應援留言區</h2>
+  <form id="supportForm">
+    <input type="text" id="nickname" placeholder="你的暱稱" required />
+    <textarea id="message" placeholder="想對 Aille 說什麼呢？" required></textarea>
+    <button type="submit">送出留言</button>
+  </form>
+  <div id="supportMessages"></div>
+        
+</section>
+.support-section {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 10px #87ceeb;
+  color: #333;
+}
+
+.support-section h2 {
+  font-family: "Pacifico", cursive;
+  color: #008ecf;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#supportForm input,
+#supportForm textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #87ceeb;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  resize: none;
+  font-family: 'Arial', sans-serif;
+}
+
+#supportForm button {
+  width: 100%;
+  background: #87ceeb;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#supportForm button:hover {
+  background: #00bfff;
+}
+
+#supportMessages {
+  margin-top: 20px;
+}
+
+#supportMessages .message {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid #87ceeb;
+  border-radius: 10px;
+}
+
+document.getElementById('supportForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const nickname = document.getElementById('nickname').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (nickname && message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.innerHTML = `<strong>${nickname}：</strong><br>${message}`;
+    
+    document.getElementById('supportMessages').prepend(messageDiv);
+
+    // 清空表單
+    document.getElementById('nickname').value = '';
+    document.getElementById('message').value = '';
+  }
+});
+        
 </html>
