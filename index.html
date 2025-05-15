@@ -25,6 +25,32 @@
       font-family: 'Brush Script MT', cursive;
     }
 
+   <section class="comment-section">
+  <h2>留言區（Aille應援區）</h2>
+  <form id="commentForm">
+    <input type="text" id="name" placeholder="你的名字" required>
+    <textarea id="message" placeholder="想說什麼呢？" required></textarea>
+    <button type="submit">送出留言</button>
+  </form>
+  <div id="comments"></div>
+</section>
+
+<script>
+  document.getElementById("commentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const message = document.getElementById("message").value;
+
+    const commentBox = document.createElement("div");
+    commentBox.innerHTML = `<p><strong>${name}</strong>：${message}</p>`;
+
+    document.getElementById("comments").appendChild(commentBox);
+
+    document.getElementById("commentForm").reset();
+  });
+</script>
+
+    
     main {
       padding: 40px 20px;
       max-width: 900px;
