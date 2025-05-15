@@ -453,7 +453,9 @@
 
   // 音樂自動播放 - 部分瀏覽器會禁止非靜音自動播放
   const audio = document.getElementById('backgroundAudio');
-  audio.autoplay = true;  
+  audio.muted = true;  // 靜音可確保自動播放
+  audio.play().catch(() => {
+    // 若失敗可考慮顯示播放按鈕讓使用者手動啟動
   });
 
 </script>
