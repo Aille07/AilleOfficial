@@ -1,142 +1,270 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aille Official Website</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
+    /* 基本版面 */
     body {
-      font-family: 'Segoe UI', cursive;
-      background: linear-gradient(to bottom right, #e0f7ff, #f5fbff);
-      color: #333;
       margin: 0;
       padding: 0;
-      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat983.cur'), auto;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #e0f7ff, #f5fbff);
+      color: #333;
+      user-select: none;
+      cursor: url('https://cur.cursors-4u.net/star/star-2/star-2.cur'), auto;
     }
-
-    /* 禁止右鍵和選取 */
+    h1, h2, h3 {
+      font-family: 'Great Vibes', cursive;
+      color: #3399ff;
+      text-shadow: 0 0 8px #a6d9ff;
+    }
+    h1 {
+      font-size: 3.5rem;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 2.4rem;
+      border-bottom: 2px solid #99ccff;
+      padding-bottom: 8px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      background: rgba(255 255 255 / 0.9);
+      border-radius: 16px;
+      padding: 30px 30px 50px;
+      box-shadow: 0 0 15px #cceeff;
+    }
+    p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #444;
+    }
+    /* 捲軸 */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #d4f0ff;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #66ccff;
+      border-radius: 8px;
+      border: 2px solid #d4f0ff;
+    }
+    /* 禁止右鍵 */
     body {
+      -webkit-touch-callout: none;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
-
-    body::selection {
-      background: none;
+    body {
+      -webkit-user-drag: none;
     }
-
-    body:context-menu {
-      display: none;
-    }
-
-    h1 {
-      font-family: 'Georgia', serif;
-      text-align: center;
-      font-size: 2.5em;
-      margin-top: 40px;
-      color: #3399ff;
-      text-shadow: 0 0 10px #99ccff;
-    }
-
+    /* 語言切換區 */
     .language-selector {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 999;
+      top: 18px;
+      right: 18px;
+      z-index: 1000;
+      user-select: none;
     }
-
-    .language-selector button {
-      font-size: 24px;
+    .language-btn {
+      font-size: 32px;
+      cursor: pointer;
       background: none;
       border: none;
-      cursor: pointer;
       color: #3399ff;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
-
-    .language-selector button:hover {
+    .language-btn:hover {
       color: #66ccff;
     }
-
     .language-menu {
       display: none;
       position: absolute;
       top: 40px;
       right: 0;
-      background: #ffffffdd;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      padding: 5px;
+      background: rgba(255 255 255 / 0.95);
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+      padding: 6px 10px;
+      min-width: 130px;
     }
-
     .language-menu button {
-      display: block;
+      width: 100%;
       background: none;
       border: none;
-      width: 100%;
-      text-align: left;
-      padding: 6px 12px;
-      font-size: 14px;
+      padding: 8px 10px;
+      font-size: 16px;
       color: #3399ff;
       cursor: pointer;
+      border-radius: 8px;
+      text-align: left;
+      transition: background-color 0.2s ease;
     }
-
     .language-menu button:hover {
-      background-color: #e6f7ff;
+      background-color: #d4f7ff;
     }
-
-    /* 滾動條樣式 */
-    ::-webkit-scrollbar {
-      width: 10px;
+    /* 各語言區塊 */
+    .lang-section {
+      display: none;
     }
-
-    ::-webkit-scrollbar-thumb {
-      background: #66ccff;
-      border-radius: 5px;
+    .lang-section.active {
+      display: block;
     }
-
-    ::-webkit-scrollbar-track {
-      background: #f0f9ff;
+    /* 作品集簡易卡片 */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .portfolio-item {
+      background: #f0fbff;
+      border: 2px solid #66ccff;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 0 10px #aaddff88;
+      transition: transform 0.3s ease;
+    }
+    .portfolio-item:hover {
+      transform: scale(1.04);
+    }
+    .portfolio-item img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      user-select: none;
+      pointer-events: none;
+    }
+    .portfolio-item h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #3399ff;
+      font-family: 'Great Vibes', cursive;
+    }
+    /* 關於我區塊 */
+    .about-me {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
     }
   </style>
 </head>
-<body oncontextmenu="return false">
-
-  <h1>Aille Official Website</h1>
-
-  <!-- 語言選單 -->
+<body>
+  <!-- 語言切換按鈕 -->
   <div class="language-selector">
-    <button onclick="toggleLanguageMenu()">🌐</button>
-    <div class="language-menu" id="languageMenu">
-      <button onclick="switchLanguage('zh')">中文</button>
-      <button onclick="switchLanguage('en')">English</button>
-      <button onclick="switchLanguage('ja')">日本語</button>
-      <button onclick="switchLanguage('ko')">한국어</button>
-      <button onclick="switchLanguage('fr')">Français</button>
+    <button class="language-btn" id="langBtn" aria-label="Select Language">🌐</button>
+    <div class="language-menu" id="langMenu" role="menu" aria-hidden="true">
+      <button data-lang="zh" role="menuitem">中文</button>
+      <button data-lang="en" role="menuitem">English</button>
+      <button data-lang="ja" role="menuitem">日本語</button>
+      <button data-lang="ko" role="menuitem">한국어</button>
+      <button data-lang="fr" role="menuitem">Français</button>
     </div>
   </div>
 
-  <script>
-    function toggleLanguageMenu() {
-      const menu = document.getElementById('languageMenu');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
+  <header>
+    <h1>Aille Official Website</h1>
+  </header>
 
-    function switchLanguage(lang) {
-      alert('語言已切換為：' + lang);
-      // 將來可整合 i18n 語言翻譯內容
-      document.getElementById('languageMenu').style.display = 'none';
-    }
+  <main class="container">
+    <!-- 中文區 -->
+    <section class="lang-section active" data-lang="zh" aria-label="中文內容">
+      <h2>歡迎來到我的官方網站！</h2>
+      <p>很高興你來到這裡，這是我Aille的官方個人網站，這裡會分享我的音樂作品、創作過程和生活點滴。</p>
+      <h2>作品集</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=作品1" alt="作品1封面" />
+          <h3>歌曲翻唱合集</h3>
+          <p>多種語言的翻唱作品，包括韓文、英文、日文和羅馬尼亞語。</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=作品2" alt="作品2封面" />
+          <h3>原創饒舌</h3>
+          <p>結合抒情與節奏的饒舌創作，展現我的獨特風格。</p>
+        </div>
+      </div>
 
-    // 點擊畫面其他區域自動關閉語言選單
-    document.addEventListener('click', function(event) {
-      const menu = document.getElementById('languageMenu');
-      if (!event.target.closest('.language-selector')) {
-        menu.style.display = 'none';
-      }
-    });
-  </script>
+      <h2>關於我</h2>
+      <div class="about-me">
+        <p>大家好，我是Aille，一個喜歡用音樂表達內心感受的創作者。我的聲音溫暖而多變，擅長唱歌和饒舌。雖然我不是標準的偶像形象，但我相信真誠的表達能感動人心。</p>
+        <p>從小我就在合唱團接受音樂訓練，喜歡在音樂裡尋找共鳴。除了音樂，我也熱衷於建立自己的官方網站，希望能和更多喜歡我音樂的人交流。</p>
+        <p>謝謝你願意認識我，未來我會持續努力，帶來更多好音樂！</p>
+      </div>
+    </section>
 
-</body>
-</html>
+    <!-- English Section -->
+    <section class="lang-section" data-lang="en" aria-label="English Content">
+      <h2>Welcome to my official website!</h2>
+      <p>I'm glad you're here. This is Aille's official personal website, where I share my music works, creative process, and life moments.</p>
+      <h2>Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=Project+1" alt="Project 1 Cover" />
+          <h3>Covers Collection</h3>
+          <p>Covering songs in multiple languages including Korean, English, Japanese, and Romanian.</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=Project+2" alt="Project 2 Cover" />
+          <h3>Original Rap</h3>
+          <p>A unique style combining lyrical and rhythmic rap creation.</p>
+        </div>
+      </div>
+
+      <h2>About Me</h2>
+      <div class="about-me">
+        <p>Hello, I'm Aille, a creator who loves to express inner feelings through music. My voice is warm and versatile, skilled in singing and rapping. Although I may not have the standard idol image, I believe sincere expression touches people's hearts.</p>
+        <p>I have trained in choir since childhood and enjoy finding resonance in music. Besides music, I'm passionate about building my official website to connect with more people who enjoy my music.</p>
+        <p>Thank you for getting to know me. I will keep working hard to bring more great music!</p>
+      </div>
+    </section>
+
+    <!-- Japanese Section -->
+    <section class="lang-section" data-lang="ja" aria-label="日本語コンテンツ">
+      <h2>私の公式ウェブサイトへようこそ！</h2>
+      <p>ここに来てくれてうれしいです。これはAilleの公式個人ウェブサイトで、音楽作品、制作過程、日々のことを共有しています。</p>
+      <h2>ポートフォリオ</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=作品1" alt="作品1カバー" />
+          <h3>カバーコレクション</h3>
+          <p>韓国語、英語、日本語、ルーマニア語など、複数の言語でのカバー作品。</p>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=作品2" alt="作品2カバー" />
+          <h3>オリジナルラップ</h3>
+          <p>叙情的かつリズミカルなラップで私の独特なスタイルを表現。</p>
+        </div>
+      </div>
+
+      <h2>私について</h2>
+      <div class="about-me">
+        <p>こんにちは、私はAilleです。音楽を通して内面の感情を表現することが好きなクリエイターです。声は温かく多様で、歌とラップが得意です。標準的なアイドルイメージではありませんが、誠実な表現が人の心を動かすと信じています。</p>
+        <p>幼い頃から合唱団で音楽訓練を受けており、音楽の共鳴を楽しんでいます。音楽以外にも、公式ウェブサイトを作って私の音楽を好きな人と繋がることに熱心です。</p>
+        <p>私を知ってくれてありがとう。これからも頑張って素敵な音楽を届けます！</p>
+      </div>
+    </section>
+
+    <!-- Korean Section -->
+    <section class="lang-section" data-lang="ko" aria-label="한국어 콘텐츠">
+      <h2>나의 공식 웹사이트에 오신 것을 환영합니다!</h2>
+      <p>여기에 와주셔서 기쁩니다. 여기는 Aille의 공식 개인 웹사이트로, 음악 작업, 창작 과정 및 일상을 공유합니다.</p>
+      <h2>포트폴리오</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://via.placeholder.com/300x180?text=프로젝트1" alt="프로젝트1 커버" />
+          <h3>커버 컬렉션</h3>
+          <p>한국어, 영어, 일본어, 루마니아어 등 여러 언어로 된 커버 작품들.</p>
+        </
