@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aille Official</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fbfc;
+      color: #333;
+      cursor: url('https://cdn.jsdelivr.net/gh/gauravpanchal947/cursor-host@main/icons/sky/sky-cursor.cur'), auto;
+    }
+    /* 天空藍主題 header */
+    header {
+      background-color: #87ceeb;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    nav {
+      background-color: #e0f2f8;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      font-weight: bold;
+    }
+    nav a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: linear-gradient(to bottom, #cbeeff, #ffffff);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #007acc;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #444;
+    }
+    .language-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .language-icon {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .language-options {
+      display: none;
+      position: absolute;
+      top: 2.5rem;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+    .language-options button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      background: white;
+      border: none;
+      color: #007acc;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .language-options button:hover {
+      background-color: #f0f8ff;
+    }
+    footer {
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* 天空藍卷軸樣式 */
+    /* Chrome, Edge, Safari */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e0f2f8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #87ceeb;
+      border-radius: 6px;
+      border: 3px solid #e0f2f8;
+    }
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #87ceeb #e0f2f8;
+  </style>
+  <script>
+    function toggleLanguageMenu() {
+      const menu = document.getElementById('languageOptions');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+    function setLanguage(lang) {
+      const texts = {
+        zh: {
+          title: '歡迎來到我的官方網站',
+          subtitle: '以天空藍為靈魂色彩，帶來療癒音樂與夢想能量。'
+        },
+        en: {
+          title: 'Welcome to My Official Website',
+          subtitle: 'Bringing healing music in sky blue.'
+        },
+        id: {
+          title: 'Selamat datang di situs resmiku',
+          subtitle: 'Membawa musik penyembuh dalam biru langit.'
+        },
+        fr: {
+          title: 'Bienvenue sur mon site officiel',
+          subtitle: 'Apportant une musique apaisante en bleu ciel.'
+        },
+        ja: {
+          title: '公式ウェブサイトへようこそ',
+          subtitle: '癒しの音楽を空色でお届けします。'
+        }
+      };
+      document.getElementById('heroTitle').innerText = texts[lang].title;
+      document.getElementById('heroSubtitle').innerText = texts[lang].subtitle;
+      document.getElementById('languageOptions').style.display = 'none';
+    }
+    // 點擊頁面空白處關閉語言選單
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('languageOptions');
+      const button = document.querySelector('.language-icon');
+      if (!menu.contains(event.target) && !button.contains(event.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="language-toggle">
+      <button class="language-icon" onclick="toggleLanguageMenu()">🌐</button>
+      <div class="language-options" id="languageOptions">
+        <button onclick="setLanguage('zh')">中文</button>
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('id')">Bahasa Indonesia</button>
+        <button onclick="setLanguage('fr')">Français</button>
+        <button onclick="setLanguage('ja')">日本語</button>
+      </div>
+    </div>
+    <h1>AILLE OFFICIAL</h1>
+    <p>Vocalist ・ Creator ・ Dreamer</p>
+  </header>
+
+  <nav>
+    <a href="#about">關於我</a>
+    <a href="#music">作品集</a>
+    <a href="#contact">聯絡方式</a>
+  </nav>
+
+  <section class="hero">
+    <h1 id="heroTitle">Welcome to My Official Website</h1>
+    <p id="heroSubtitle">以天空藍為靈魂色彩，帶來療癒音樂與夢想能量。</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Aille Official. All rights reserved.
+  </footer>
+</body>
+</html>
