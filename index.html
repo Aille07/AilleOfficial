@@ -1,202 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Aille Official Website</title>
-<style>
-  /* 主題色：天空藍 */
-  :root {
-    --skyblue: #87ceeb;
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #a8d0ff, #ffffff);
-    color: #333;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387ceeb"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
-  }
-
-  header {
-    background: var(--skyblue);
-    padding: 20px;
-    text-align: center;
-    color: white;
-    font-size: 2.5em;
-    font-weight: bold;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-  }
-
-  /* 語言選單區 */
-  .language-selector {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    user-select: none;
-  }
-
-  .globe-btn {
-    background: transparent;
-    border: none;
-    font-size: 2em;
-    cursor: pointer;
-    color: var(--skyblue);
-    transition: transform 0.3s ease;
-  }
-
-  .globe-btn:hover {
-    transform: rotate(20deg);
-  }
-
-  .lang-menu {
-    list-style: none;
-    margin: 5px 0 0 0;
-    padding: 0;
-    background: white;
-    border: 2px solid var(--skyblue);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(135,206,235,0.6);
-    display: none;
-  }
-
-  .lang-menu.show {
-    display: block;
-  }
-
-  .lang-menu li {
-    padding: 8px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--skyblue);
-    border-bottom: 1px solid var(--skyblue);
-    transition: background-color 0.2s ease;
-  }
-
-  .lang-menu li:last-child {
-    border-bottom: none;
-  }
-
-  .lang-menu li:hover {
-    background: var(--skyblue);
-    color: white;
-  }
-
-  /* 頁面主內容 */
-  main {
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  /* 捲軸樣式 */
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #e0f0ff;
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--skyblue);
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #66b2ff;
-  }
-
-  /* 華麗字型範例 */
-  h1, h2, h3 {
-    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-    text-shadow: 2px 2px 5px rgba(135,206,235,0.7);
-  }
-
-  /* Aille Official Logo 區塊 */
-  .logo-section {
-    background: linear-gradient(135deg, #e0f7ff, #ffffff);
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 0 30px rgba(135,206,235,0.4);
-    text-align: center;
-  }
-
-  .logo-text {
-    font-size: 3em;
-    font-weight: 900;
-    color: var(--skyblue);
-    font-family: 'Brush Script MT', cursive, serif;
-    text-shadow:
-      0 0 5px #87ceeb,
-      0 0 10px #87ceeb,
-      0 0 20px #00bfff,
-      0 0 30px #00bfff;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aille Official</title>
+  <style>
+   body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, #a8d0ff, #ffffff);
+  color: #333;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387ceeb"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
+}
+    header {
+      background-color: #87ceeb; /* Sky blue */
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    nav {
+      background-color: #e0f2f8;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      font-weight: bold;
+    }
+    nav a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: linear-gradient(to bottom, #cbeeff, #ffffff);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #007acc;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #444;
+    }
+    .language-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .language-icon {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    .language-options {
+      display: none;
+      position: absolute;
+      top: 2.5rem;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .language-options button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      background: white;
+      border: none;
+      color: #007acc;
+      cursor: pointer;
+      text-align: left;
+    }
+    .language-options button:hover {
+      background-color: #f0f8ff;
+    }
+    footer {
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+  <script>
+    function toggleLanguageMenu() {
+      const menu = document.getElementById('languageOptions');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+    function setLanguage(lang) {
+      const texts = {
+        zh: {
+          title: '歡迎來到我的官方網站',
+          subtitle: '以天空藍為靈魂色彩，帶來療癒音樂與夢想能量。'
+        },
+        en: {
+          title: 'Welcome to My Official Website',
+          subtitle: 'Bringing healing music in sky blue.'
+        },
+        id: {
+          title: 'Selamat datang di situs resmiku',
+          subtitle: 'Membawa musik penyembuh dalam biru langit.'
+         },
+        kr: {
+          title: '나의 공식 홈페이지에 오신 것을 환영합니다.',
+          subtitle: '스카이 블루를 소울 컬러로 힐링 음악과 꿈의 에너지'
+          },
+        jp: {
+          title: '私の公式ホームページへようこそ。',
+          subtitle: 'スカイブルーをソウルカラーでヒーリング音楽と夢のエネルギー'
+      };
+      document.getElementById('heroTitle').innerText = texts[lang].title;
+      document.getElementById('heroSubtitle').innerText = texts[lang].subtitle;
+      document.getElementById('languageOptions').style.display = 'none';
+    }
+  </script>
 </head>
 <body>
+  <header>
+    <div class="language-toggle">
+      <button class="language-icon" onclick="toggleLanguageMenu()">🌐</button>
+      <div class="language-options" id="languageOptions">
+        <button onclick="setLanguage('zh')">中文</button>
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('id')">Bahasa Indonesia</button>
+        <button onclick="setLanguage('kr')">한국어</button>
+        <button onclick="setLanguage('jp')">日本語</button>
+      </div>
+    </div>
+    <h1>AILLE OFFICIAL</h1>
+    <p>Vocalist ・ Creator ・ Dreamer</p>
+  </header>
 
-<header>
-  Aille Official Website
-</header>
+  <nav>
+    <a href="#about">關於我</a>
+    <a href="#music">作品集</a>
+    <a href="#contact">聯絡方式</a>
+  </nav>
 
-<!-- Logo區 -->
-<section class="logo-section">
-  <div class="logo-text">Aille Official</div>
-</section>
+  <section class="hero">
+    <h1 id="heroTitle">Welcome to My Official Website</h1>
+    <p id="heroSubtitle">以天空藍為靈魂色彩，帶來療癒音樂與夢想能量。</p>
+  </section>
 
-<!-- 語言選擇器 -->
-<div class="language-selector">
-  <button class="globe-btn" onclick="toggleLangMenu()" aria-label="語言選擇">🌐</button>
-  <ul id="lang-menu" class="lang-menu" role="menu" aria-hidden="true">
-    <li role="menuitem" data-lang="en" tabindex="0">English</li>
-    <li role="menuitem" data-lang="zh" tabindex="0">中文</li>
-    <li role="menuitem" data-lang="id" tabindex="0">Bahasa Indonesia</li>
-    <li role="menuitem" data-lang="fr" tabindex="0">Français</li>
-    <li role="menuitem" data-lang="ja" tabindex="0">日本語</li>
-    <li role="menuitem" data-lang="ko" tabindex="0">한국어</li>
-  </ul>
-</div>
-
-<main>
-  <h1>Welcome to Aille's Official Website</h1>
-  <p>這裡是妳的個人官方網站主頁，展現妳的風格與魅力！</p>
-
-  <h2>語言切換</h2>
-  <p>點擊右上角地球圖示，選擇你想要的語言。</p>
-  
-  <h2>關於 Aille</h2>
-  <p>這裡可以放妳的簡介、最新消息、作品展示等。</p>
-</main>
-
-<script>
-  const langMenu = document.getElementById('lang-menu');
-
-  function toggleLangMenu() {
-    const isShown = langMenu.classList.toggle('show');
-    langMenu.setAttribute('aria-hidden', !isShown);
-  }
-
-  langMenu.addEventListener('click', e => {
-    if(e.target.tagName === 'LI') {
-      alert('你選擇的語言是：' + e.target.textContent);
-      toggleLangMenu();
-    }
-  });
-
-  langMenu.addEventListener('keydown', e => {
-    if(e.key === 'Enter' && e.target.tagName === 'LI') {
-      alert('你選擇的語言是：' + e.target.textContent);
-      toggleLangMenu();
-    }
-  });
-
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.language-selector')) {
-      langMenu.classList.remove('show');
-      langMenu.setAttribute('aria-hidden', 'true');
-    }
-  });
+  <footer>
+    &copy; 2025 Aille Official. All rights reserved.
+  </footer>
+</body>
+</html>
 </script>
 
 </body>
