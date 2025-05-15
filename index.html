@@ -2,214 +2,169 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aille's Comment Book</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aille Official</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #e0f7ff;
-      font-family: 'Segoe UI', sans-serif;
-      color: #333;
       margin: 0;
-      padding: 0;
-      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat949.cur'), auto;
+      font-family: 'Quicksand', sans-serif;
+      background-color: #e6f7ff;
+      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat955.cur'), auto;
     }
 
     ::-webkit-scrollbar {
       width: 10px;
     }
+
     ::-webkit-scrollbar-thumb {
-      background-color: #87cefa;
-      border-radius: 5px;
+      background-color: #3399ff;
+      border-radius: 10px;
     }
 
-    header {
-      background-color: #b3e5fc;
+    .site-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      text-align: center;
+      color: #3399ff;
+      margin-top: 40px;
+    }
+
+    .comment-title {
+      text-align: center;
+      font-size: 24px;
+      font-family: 'Quicksand', sans-serif;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .comment-section {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f5faff;
       padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      color: #004d60;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .welcome-message {
-      text-align: center;
-      font-size: 18px;
-      margin: 10px 0;
+    #comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .language-select {
-      position: absolute;
-      top: 15px;
+    #comment-form input,
+    #comment-form textarea {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    #comment-form button {
+      background-color: #3399ff;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    #comment-form button:hover {
+      background-color: #2277cc;
+    }
+
+    #comments-container {
+      margin-top: 20px;
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 20px;
       right: 20px;
+      z-index: 1000;
     }
 
-    .language-icon {
-      width: 24px;
+    .language-button {
+      background: none;
+      border: none;
+      font-size: 24px;
       cursor: pointer;
     }
 
-    .language-menu {
+    .language-options {
       display: none;
+      flex-direction: column;
       position: absolute;
       top: 40px;
       right: 0;
-      background-color: #fff;
+      background: white;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      z-index: 999;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
-    .language-menu button {
-      background: none;
+    .language-options button {
+      padding: 8px 12px;
       border: none;
-      width: 100%;
-      padding: 8px;
-      text-align: left;
+      background: #fff;
       cursor: pointer;
     }
 
-    .language-select:hover .language-menu {
-      display: block;
-    }
-
-    form {
-      max-width: 600px;
-      margin: 30px auto;
-      background: #ffffffcc;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px #ccc;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    button[type="submit"] {
-      background-color: #00bcd4;
+    .language-options button:hover {
+      background: #3399ff;
       color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
     }
 
-    .messages {
-      max-width: 600px;
-      margin: 20px auto;
-      background-color: #ffffffcc;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    .message {
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    .message:last-child {
-      border-bottom: none;
+    .show {
+      display: flex !important;
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const langBtn = document.getElementById("langBtn");
+      const langOptions = document.getElementById("langOptions");
+
+      langBtn.addEventListener("click", () => {
+        langOptions.classList.toggle("show");
+      });
+
+      // 禁止右鍵
+      document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+      });
+    });
+  </script>
 </head>
-<body oncontextmenu="return false">
-  <header>Aille's Comment Book</header>
-  <div class="language-select">
-    <img src="https://cdn-icons-png.flaticon.com/512/44/44386.png" class="language-icon" alt="Languages" />
-    <div class="language-menu">
-      <button onclick="changeLanguage('en')">English</button>
-      <button onclick="changeLanguage('zh')">中文</button>
-      <button onclick="changeLanguage('ja')">日本語</button>
-      <button onclick="changeLanguage('ko')">한국어</button>
-      <button onclick="changeLanguage('fr')">Français</button>
-      <button onclick="changeLanguage('id')">Bahasa Indonesia</button>
+<body>
+
+  <div class="language-selector">
+    <button class="language-button" id="langBtn">🌐</button>
+    <div class="language-options" id="langOptions">
+      <button onclick="alert('語言切換：中文')">中文</button>
+      <button onclick="alert('Language: English')">English</button>
+      <button onclick="alert('Langue: Français')">Français</button>
+      <button onclick="alert('言語: 日本語')">日本語</button>
+      <button onclick="alert('Bahasa: Indonesia')">Bahasa Indonesia</button>
+      <button onclick="alert('언어: 한국어')">한국어</button>
     </div>
   </div>
 
-  <div class="welcome-message" id="welcome-text">Welcome to my comment book! Feel free to leave your support message ♥</div>
+  <div class="comment-section">
+    <h1 class="site-title">Aille Official</h1>
+    <h2 class="comment-title">Support messages for Aille</h2>
 
-  <form id="commentForm">
-    <label for="name">Your name</label>
-    <input type="text" id="name" required />
+    <form id="comment-form">
+      <input type="text" id="name" placeholder="Your name" required />
+      <textarea id="message" placeholder="What do you want to say" required></textarea>
+      <button type="submit">Send</button>
+    </form>
 
-    <label for="message">What do you want to say</label>
-    <textarea id="message" rows="4" required></textarea>
-
-    <button type="submit">Send</button>
-  </form>
-
-  <div class="messages" id="messages"></div>
-
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCVer9N-UeLVhyQtSklS_RmNEgF9aDGrbA",
-      authDomain: "aille-support.firebaseapp.com",
-      projectId: "aille-support",
-      storageBucket: "aille-support.appspot.com",
-      messagingSenderId: "1062924637108",
-      appId: "1:1062924637108:web:10c0fca7cd0a10d10e18e1",
-      measurementId: "G-2J6P87XVBV"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    async function loadMessages() {
-      const querySnapshot = await getDocs(collection(db, "messages"));
-      const messagesDiv = document.getElementById("messages");
-      messagesDiv.innerHTML = "";
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        messagesDiv.innerHTML += `
-          <div class="message">
-            <strong>${data.name}</strong><br/>
-            <span>${data.message}</span>
-          </div>
-        `;
-      });
-    }
-
-    document.getElementById("commentForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const message = document.getElementById("message").value;
-
-      await addDoc(collection(db, "messages"), { name, message });
-
-      document.getElementById("commentForm").reset();
-      loadMessages();
-    });
-
-    loadMessages();
-
-    function changeLanguage(lang) {
-      const welcome = {
-        en: "Welcome to my comment book! Feel free to leave your support message ♥",
-        zh: "歡迎寫上對我應援的話 ♥",
-        ja: "私の応援ノートへようこそ！メッセージを残してね ♥",
-        ko: "나의 응원 코멘트북에 오신 것을 환영해요! 메시지를 남겨줘요 ♥",
-        fr: "Bienvenue sur mon livre d'encouragement ! Laissez un message ♥",
-        id: "Selamat datang di buku dukungan saya! Silakan tinggalkan pesan ♥"
-      };
-      document.getElementById("welcome-text").innerText = welcome[lang] || welcome["en"];
-    }
-  </script>
+    <div id="comments-container"></div>
+  </div>
 </body>
 </html>
