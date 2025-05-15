@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       background-color: #d9f1ff; /* 天空藍背景 */
       color: #333;
-      cursor: url('https://emojicursor.app/assets/emoji/1f97a.png'), auto; /* 可愛游標圖案，可替換 */
+      cursor: url('https://emojicursor.app/assets/emoji/1f97a.png'), auto; /* 可愛游標圖案 */
       overflow-y: scroll;
     }
 
@@ -19,7 +19,7 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #d9f1ff; /* 天空藍 */
+      background: #d9f1ff;
     }
 
     ::-webkit-scrollbar-thumb {
@@ -89,19 +89,69 @@
   <div class="container">
     <div class="language-selector">
       🌐
-      <select>
+      <select id="lang" onchange="setLanguage(this.value)">
         <option value="en">English</option>
         <option value="zh">中文</option>
-        <option value="es">Español</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
         <option value="fr">Français</option>
+        <option value="id">Bahasa Indonesia</option>
       </select>
     </div>
 
-    <h1>Support Messages for Aille</h1>
-    <input type="text" placeholder="Your name">
-    <textarea placeholder="What do you want to say?"></textarea>
-    <button>Send</button>
+    <h1 id="form-title">Support Messages for Aille</h1>
+    <input id="name" type="text" placeholder="Your name">
+    <textarea id="message" placeholder="What do you want to say?"></textarea>
+    <button id="send-btn">Send</button>
   </div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Support Messages for Aille",
+        name: "Your name",
+        message: "What do you want to say?",
+        send: "Send"
+      },
+      zh: {
+        title: "寫信支持 Aille",
+        name: "您的名字",
+        message: "想對她說什麼呢？",
+        send: "傳送"
+      },
+      ko: {
+        title: "Aille 응원 메시지",
+        name: "이름",
+        message: "하고 싶은 말을 써주세요",
+        send: "보내기"
+      },
+      ja: {
+        title: "Ailleへの応援メッセージ",
+        name: "お名前",
+        message: "応援メッセージを書いてください",
+        send: "送信"
+      },
+      fr: {
+        title: "Messages de soutien pour Aille",
+        name: "Votre nom",
+        message: "Que voulez-vous dire ?",
+        send: "Envoyer"
+      },
+      id: {
+        title: "Pesan dukungan untuk Aille",
+        name: "Nama Anda",
+        message: "Apa yang ingin Anda katakan?",
+        send: "Kirim"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.getElementById('form-title').textContent = translations[lang].title;
+      document.getElementById('name').placeholder = translations[lang].name;
+      document.getElementById('message').placeholder = translations[lang].message;
+      document.getElementById('send-btn').textContent = translations[lang].send;
+    }
+  </script>
 
 </body>
 </html>
