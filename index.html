@@ -1,130 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aille Official</title>
-  <style>
-   body {
-  margin: 0;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #a8d0ff, #ffffff);
-  color: #333;
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387ceeb"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
-}
-    header {
-      background-color: #87ceeb; /* Sky blue */
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-      position: relative;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aille Official Website</title>
+<style>
+  /* 主題色：天空藍 */
+  :root {
+    --skyblue: #87ceeb;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #a8d0ff, #ffffff);
+    color: #333;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="%2387CEEB"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>') 12 12, auto;
+  }
+
+  header {
+    background-color: var(--skyblue);
+    padding: 20px;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  nav {
+    background-color: #b0d8ff;
+    padding: 10px;
+    text-align: center;
+  }
+
+  nav button {
+    margin: 0 10px;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: none;
+    background-color: var(--skyblue);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  nav button:hover {
+    background-color: #5dade2;
+  }
+
+  main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* 捲軸樣式 */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #e0f0ff;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--skyblue);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #66b2ff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  Aille Official Website
+</header>
+
+<nav>
+  <button onclick="setLanguage('en')">English</button>
+  <button onclick="setLanguage('zh')">中文</button>
+  <button onclick="setLanguage('id')">Bahasa Indonesia</button>
+  <button onclick="setLanguage('fr')">Français</button>
+  <button onclick="setLanguage('ja')">日本語</button>
+  <button onclick="setLanguage('ko')">한국어</button>
+</nav>
+
+<main id="content">
+  <h1>Welcome to Aille's Official Website</h1>
+  <p>This is your personal official homepage to showcase your style and charm!</p>
+</main>
+
+<script>
+  const texts = {
+    en: {
+      title: "Welcome to Aille's Official Website",
+      content: "This is your personal official homepage to showcase your style and charm!"
+    },
+    zh: {
+      title: "歡迎來到 Aille 官方網站",
+      content: "這是妳的個人官方網站主頁，展現妳的風格與魅力！"
+    },
+    id: {
+      title: "Selamat datang di Situs Resmi Aille",
+      content: "Ini adalah halaman resmi pribadimu untuk menunjukkan gaya dan pesonamu!"
+    },
+    fr: {
+      title: "Bienvenue sur le site officiel d'Aille",
+      content: "Ceci est ta page d'accueil officielle personnelle pour montrer ton style et ton charme !"
+    },
+    ja: {
+      title: "Aille公式サイトへようこそ",
+      content: "これはあなたのスタイルと魅力を披露するための公式ホームページです！"
+    },
+    ko: {
+      title: "Aille 공식 웹사이트에 오신 것을 환영합니다",
+      content: "여기는 당신의 스타일과 매력을 보여주는 개인 공식 홈페이지입니다!"
     }
-    nav {
-      background-color: #e0f2f8;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 0;
-      font-weight: bold;
+  };
+
+  function setLanguage(lang) {
+    const content = document.getElementById('content');
+    if (texts[lang]) {
+      content.innerHTML = `
+        <h1>${texts[lang].title}</h1>
+        <p>${texts[lang].content}</p>
+      `;
     }
-    nav a {
-      color: #007acc;
-      text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .hero {
-      padding: 3rem 2rem;
-      text-align: center;
-      background: linear-gradient(to bottom, #cbeeff, #ffffff);
-    }
-    .hero h1 {
-      font-size: 3rem;
-      color: #007acc;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      color: #444;
-    }
-    .language-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-    }
-    .language-icon {
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-    .language-options {
-      display: none;
-      position: absolute;
-      top: 2.5rem;
-      right: 0;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .language-options button {
-      display: block;
-      width: 100%;
-      padding: 0.5rem 1rem;
-      background: white;
-      border: none;
-      color: #007acc;
-      cursor: pointer;
-      text-align: left;
-    }
-    .language-options button:hover {
-      background-color: #f0f8ff;
-    }
-    footer {
-      background-color: #f0f8ff;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  </style>
-  <script>
-    function toggleLanguageMenu() {
-      const menu = document.getElementById('languageOptions');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-    function setLanguage(lang) {
-      const texts = {
-        zh: {
-          title: '歡迎來到我的官方網站',
-          subtitle: '以天空藍為靈魂色彩，帶來療癒音樂與夢想能量。'
-        },
-        en: {
-          title: 'Welcome to My Official Website',
-          subtitle: 'Bringing healing music in sky blue.'
-        },
-        id: {
-          title: 'Selamat datang di situs resmiku',
-          subtitle: 'Membawa musik penyembuh dalam biru langit.'
-         },
-        kr: {
-          title: '나의 공식 홈페이지에 오신 것을 환영합니다.',
-          subtitle: '스카이 블루를 소울 컬러로 힐링 음악과 꿈의 에너지'
-          },
-        jp: {
-          title: '私の公式ホームページへようこそ。',
-          subtitle: 'スカイブルーをソウルカラーでヒーリング音楽と夢のエネルギー'
-      };
-      
-      document.addEventListener('click', e => {
-    if(!e.target.closest('.language-selector')) {
-      langMenu.classList.remove('show');
-      langMenu.setAttribute('aria-hidden', 'true');
-    }
-  });
+  }
 </script>
 
 </body>
