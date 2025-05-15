@@ -119,11 +119,13 @@
           subtitle: 'スカイブルーをソウルカラーでヒーリング音楽と夢のエネルギー'
       };
       
-      document.getElementById('heroTitle').innerText = texts[lang].title;
-      document.getElementById('heroSubtitle').innerText = texts[lang].subtitle;
-      document.getElementById('languageOptions').style.display = 'none';
+      document.addEventListener('click', e => {
+    if(!e.target.closest('.language-selector')) {
+      langMenu.classList.remove('show');
+      langMenu.setAttribute('aria-hidden', 'true');
     }
-  </script>
-  
+  });
+</script>
+
 </body>
 </html>
