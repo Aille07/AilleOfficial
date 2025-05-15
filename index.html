@@ -2,26 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aille Official</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand&display=swap" rel="stylesheet" />
   <style>
+    /* 全站樣式 */
     body {
       margin: 0;
       font-family: 'Quicksand', sans-serif;
       background-color: #e6f7ff;
       cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat955.cur'), auto;
+      user-select: none;
     }
 
+    /* 卷軸樣式 - 各瀏覽器兼容 */
     ::-webkit-scrollbar {
-      width: 10px;
+      width: 12px;
     }
-
     ::-webkit-scrollbar-thumb {
       background-color: #3399ff;
-      border-radius: 10px;
+      border-radius: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #f0faff;
     }
 
+    /* 標題樣式 */
     .site-title {
       font-family: 'Great Vibes', cursive;
       font-size: 48px;
@@ -33,11 +39,11 @@
     .comment-title {
       text-align: center;
       font-size: 24px;
-      font-family: 'Quicksand', sans-serif;
       margin-bottom: 20px;
       color: #444;
     }
 
+    /* 留言區 */
     .comment-section {
       width: 90%;
       max-width: 600px;
@@ -71,7 +77,6 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-family: 'Quicksand', sans-serif;
     }
 
     #comment-form button:hover {
@@ -82,6 +87,7 @@
       margin-top: 20px;
     }
 
+    /* 多語言選單 */
     .language-selector {
       position: fixed;
       top: 20px;
@@ -106,6 +112,11 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .language-options.show {
+      display: flex;
     }
 
     .language-options button {
@@ -113,6 +124,8 @@
       border: none;
       background: #fff;
       cursor: pointer;
+      text-align: left;
+      font-size: 14px;
     }
 
     .language-options button:hover {
@@ -120,28 +133,14 @@
       color: white;
     }
 
-    .show {
-      display: flex !important;
+    /* 防止右鍵與拖曳圖片下載 */
+    img, a {
+      pointer-events: none;
     }
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const langBtn = document.getElementById("langBtn");
-      const langOptions = document.getElementById("langOptions");
-
-      langBtn.addEventListener("click", () => {
-        langOptions.classList.toggle("show");
-      });
-
-      // 禁止右鍵
-      document.addEventListener("contextmenu", function(e) {
-        e.preventDefault();
-      });
-    });
-  </script>
 </head>
-<body>
-
+<body oncontextmenu="return false;">
+  <!-- 地球語言選單 -->
   <div class="language-selector">
     <button class="language-button" id="langBtn">🌐</button>
     <div class="language-options" id="langOptions">
@@ -154,6 +153,7 @@
     </div>
   </div>
 
+  <!-- 留言區 -->
   <div class="comment-section">
     <h1 class="site-title">Aille Official</h1>
     <h2 class="comment-title">Support messages for Aille</h2>
@@ -166,5 +166,28 @@
 
     <div id="comments-container"></div>
   </div>
+
+  <!-- 多語言選單 JS -->
+  <script>
+    const langBtn = document.getElementById("langBtn");
+    const langOptions = document.getElementById("langOptions");
+    langBtn.addEventListener("click", () => {
+      langOptions.classList.toggle("show");
+    });
+
+    // 留言功能暫時禁用，如需儲存可整合 Firebase
+    document.getElementById("comment-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (name && message) {
+        const container = document.getElementById("comments-container");
+        const newMsg = document.createElement("div");
+        newMsg.innerHTML = `<strong>${name}</strong>: ${message}`;
+        container.prepend(newMsg);
+        this.reset();
+      }
+    });
+  </script>
 </body>
 </html>
