@@ -116,42 +116,18 @@
       const menu = document.getElementById('languageOptions');
       menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
-    function setLanguage(lang) {
-      const texts = {
-        zh: {
-          title: '歡迎來到我的官方網站',
-          subtitle: '以天空藍為靈魂色彩，帶來療癒音樂與夢想能量。'
-        },
-        en: {
-          title: 'Welcome to My Official Website',
-          subtitle: 'Bringing healing music in sky blue.'
-        },
-        id: {
-          title: 'Selamat datang di situs resmiku',
-          subtitle: 'Membawa musik penyembuh dalam biru langit.'
-        },
-        fr: {
-          title: 'Bienvenue sur mon site officiel',
-          subtitle: 'Apportant une musique apaisante en bleu ciel.'
-        },
-        ja: {
-          title: '公式ウェブサイトへようこそ',
-          subtitle: '癒しの音楽を空色でお届けします。'
-        }
-      };
-      document.getElementById('heroTitle').innerText = texts[lang].title;
-      document.getElementById('heroSubtitle').innerText = texts[lang].subtitle;
-      document.getElementById('languageOptions').style.display = 'none';
-    }
-    // 點擊頁面空白處關閉語言選單
-    document.addEventListener('click', function(event) {
-      const menu = document.getElementById('languageOptions');
-      const button = document.querySelector('.language-icon');
-      if (!menu.contains(event.target) && !button.contains(event.target)) {
-        menu.style.display = 'none';
-      }
-    });
-  </script>
+    <!-- 語言切換按鈕與選單 -->
+<div class="language-selector">
+  <button class="globe-btn" onclick="toggleLangMenu()">🌐</button>
+  <ul id="lang-menu" class="lang-menu">
+    <li data-lang="en">English</li>
+    <li data-lang="zh">中文</li>
+    <li data-lang="id">Bahasa Indonesia</li>
+    <li data-lang="fr">Français</li>
+    <li data-lang="ja">日本語</li>
+    <li data-lang="ko">한국어</li> <!-- -->
+  </ul>
+</div>
 </head>
 <body>
   <header>
@@ -163,6 +139,7 @@
         <button onclick="setLanguage('id')">Bahasa Indonesia</button>
         <button onclick="setLanguage('fr')">Français</button>
         <button onclick="setLanguage('ja')">日本語</button>
+        <button onclick="setLanguage('kr')">한국어</button>
       </div>
     </div>
     <h1>AILLE OFFICIAL</h1>
