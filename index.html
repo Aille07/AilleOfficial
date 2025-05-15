@@ -1,270 +1,462 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aille Official Website</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
-    /* 基本版面 */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom right, #e0f7ff, #f5fbff);
-      color: #333;
-      user-select: none;
-      cursor: url('https://cur.cursors-4u.net/star/star-2/star-2.cur'), auto;
-    }
-    h1, h2, h3 {
-      font-family: 'Great Vibes', cursive;
-      color: #3399ff;
-      text-shadow: 0 0 8px #a6d9ff;
-    }
-    h1 {
-      font-size: 3.5rem;
-      text-align: center;
-      margin-top: 40px;
-      margin-bottom: 10px;
-    }
-    h2 {
-      font-size: 2.4rem;
-      border-bottom: 2px solid #99ccff;
-      padding-bottom: 8px;
-      margin-top: 40px;
-      margin-bottom: 20px;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto 60px;
-      background: rgba(255 255 255 / 0.9);
-      border-radius: 16px;
-      padding: 30px 30px 50px;
-      box-shadow: 0 0 15px #cceeff;
-    }
-    p {
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: #444;
-    }
-    /* 捲軸 */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #d4f0ff;
-      border-radius: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #66ccff;
-      border-radius: 8px;
-      border: 2px solid #d4f0ff;
-    }
-    /* 禁止右鍵 */
-    body {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    body {
-      -webkit-user-drag: none;
-    }
-    /* 語言切換區 */
-    .language-selector {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 1000;
-      user-select: none;
-    }
-    .language-btn {
-      font-size: 32px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #3399ff;
-      transition: color 0.3s ease;
-    }
-    .language-btn:hover {
-      color: #66ccff;
-    }
-    .language-menu {
-      display: none;
-      position: absolute;
-      top: 40px;
-      right: 0;
-      background: rgba(255 255 255 / 0.95);
-      border-radius: 12px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.15);
-      padding: 6px 10px;
-      min-width: 130px;
-    }
-    .language-menu button {
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 8px 10px;
-      font-size: 16px;
-      color: #3399ff;
-      cursor: pointer;
-      border-radius: 8px;
-      text-align: left;
-      transition: background-color 0.2s ease;
-    }
-    .language-menu button:hover {
-      background-color: #d4f7ff;
-    }
-    /* 各語言區塊 */
-    .lang-section {
-      display: none;
-    }
-    .lang-section.active {
-      display: block;
-    }
-    /* 作品集簡易卡片 */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-    .portfolio-item {
-      background: #f0fbff;
-      border: 2px solid #66ccff;
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 0 10px #aaddff88;
-      transition: transform 0.3s ease;
-    }
-    .portfolio-item:hover {
-      transform: scale(1.04);
-    }
-    .portfolio-item img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      user-select: none;
-      pointer-events: none;
-    }
-    .portfolio-item h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      color: #3399ff;
-      font-family: 'Great Vibes', cursive;
-    }
-    /* 關於我區塊 */
-    .about-me {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #555;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aille Official Website</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #e0f7ff, #f5fbff);
+    color: #333;
+    user-select: none;
+    cursor: url('https://cur.cursors-4u.net/star/star-2/star-2.cur'), auto;
+  }
+  h1,h2,h3 {
+    font-family: 'Great Vibes', cursive;
+    color: #3399ff;
+    text-shadow: 0 0 8px #a6d9ff;
+  }
+  h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    margin: 40px 0 10px;
+  }
+  h2 {
+    font-size: 2.4rem;
+    border-bottom: 2px solid #99ccff;
+    padding-bottom: 8px;
+    margin: 40px 0 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    background: rgba(255 255 255 / 0.9);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 15px #cceeff;
+  }
+  p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+  }
+  /* 捲軸 */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #d4f0ff;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #66ccff;
+    border-radius: 8px;
+    border: 2px solid #d4f0ff;
+  }
+  /* 禁止右鍵與選取 */
+  body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  /* 語言切換區 */
+  .language-selector {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 1000;
+    user-select: none;
+  }
+  .language-btn {
+    font-size: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #3399ff;
+    transition: color 0.3s ease;
+  }
+  .language-btn:hover {
+    color: #66ccff;
+  }
+  .language-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: rgba(255 255 255 / 0.95);
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    padding: 6px 10px;
+    min-width: 130px;
+  }
+  .language-menu.show {
+    display: block;
+  }
+  .language-menu button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 8px 10px;
+    font-size: 16px;
+    color: #3399ff;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+  .language-menu button:hover {
+    background-color: #d4f7ff;
+  }
+  /* 各語言區塊 */
+  .lang-section {
+    display: none;
+  }
+  .lang-section.active {
+    display: block;
+  }
+  /* 作品集 */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .portfolio-item {
+    background: #f0fbff;
+    border: 2px solid #66ccff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 0 10px #aaddff88;
+    transition: transform 0.3s ease;
+  }
+  .portfolio-item:hover {
+    transform: scale(1.04);
+  }
+  .portfolio-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    user-select: none;
+    pointer-events: none;
+  }
+  .portfolio-item h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #3399ff;
+    font-family: 'Great Vibes', cursive;
+  }
+  /* 關於我 */
+  .about-me {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+  }
+  /* 留言區 */
+  #commentSection {
+    max-width: 900px;
+    margin: 30px auto 60px;
+    background: rgba(255 255 255 / 0.9);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 15px #cceeff;
+  }
+  #commentSection h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #3399ff;
+    text-shadow: 0 0 8px #a6d9ff;
+    margin-bottom: 20px;
+  }
+  #commentForm textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 12px;
+    border: 2px solid #66ccff;
+    padding: 12px;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+  }
+  #commentForm button {
+    margin-top: 12px;
+    padding: 10px 18px;
+    background-color: #3399ff;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Great Vibes', cursive;
+    box-shadow: 0 0 8px #66ccff;
+  }
+  #commentForm button:hover {
+    background-color: #66ccff;
+  }
+  #commentsList {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    border-top: 1px solid #99ccff;
+    padding-top: 10px;
+  }
+  .comment {
+    border-bottom: 1px solid #cce8ff;
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #333;
+    white-space: pre-wrap;
+  }
+</style>
 </head>
 <body>
-  <!-- 語言切換按鈕 -->
-  <div class="language-selector">
-    <button class="language-btn" id="langBtn" aria-label="Select Language">🌐</button>
-    <div class="language-menu" id="langMenu" role="menu" aria-hidden="true">
-      <button data-lang="zh" role="menuitem">中文</button>
-      <button data-lang="en" role="menuitem">English</button>
-      <button data-lang="ja" role="menuitem">日本語</button>
-      <button data-lang="ko" role="menuitem">한국어</button>
-      <button data-lang="fr" role="menuitem">Français</button>
-    </div>
+
+<!-- 語言選擇 -->
+<div class="language-selector" role="navigation" aria-label="Language selection">
+  <button class="language-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="Select Language">🌐</button>
+  <div class="language-menu" id="langMenu" role="menu" aria-hidden="true">
+    <button data-lang="zh" role="menuitem">中文</button>
+    <button data-lang="en" role="menuitem">English</button>
+    <button data-lang="ja" role="menuitem">日本語</button>
+    <button data-lang="ko" role="menuitem">한국어</button>
+    <button data-lang="fr" role="menuitem">Français</button>
   </div>
+</div>
 
-  <header>
-    <h1>Aille Official Website</h1>
-  </header>
+<header>
+  <h1>Aille Official Website</h1>
+</header>
 
-  <main class="container">
-    <!-- 中文區 -->
-    <section class="lang-section active" data-lang="zh" aria-label="中文內容">
-      <h2>歡迎來到我的官方網站！</h2>
-      <p>很高興你來到這裡，這是我Aille的官方個人網站，這裡會分享我的音樂作品、創作過程和生活點滴。</p>
-      <h2>作品集</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=作品1" alt="作品1封面" />
-          <h3>歌曲翻唱合集</h3>
-          <p>多種語言的翻唱作品，包括韓文、英文、日文和羅馬尼亞語。</p>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=作品2" alt="作品2封面" />
-          <h3>原創饒舌</h3>
-          <p>結合抒情與節奏的饒舌創作，展現我的獨特風格。</p>
-        </div>
+<main class="container">
+
+  <!-- 中文 -->
+  <section class="lang-section active" data-lang="zh" aria-label="中文內容">
+    <h2>歡迎來到我的官方網站！</h2>
+    <p>很高興你來訪，我是 Aille，一位熱愛音樂與創作的多語言歌手。請隨意瀏覽我的作品集和關於我介紹。</p>
+    <h2>作品集</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=作品1" alt="作品1圖片" />
+        <h3>音樂翻唱系列</h3>
+        <p>涵蓋韓文、英文、日文和羅馬尼亞語的多樣歌曲翻唱。</p>
       </div>
-
-      <h2>關於我</h2>
-      <div class="about-me">
-        <p>大家好，我是Aille，一個喜歡用音樂表達內心感受的創作者。我的聲音溫暖而多變，擅長唱歌和饒舌。雖然我不是標準的偶像形象，但我相信真誠的表達能感動人心。</p>
-        <p>從小我就在合唱團接受音樂訓練，喜歡在音樂裡尋找共鳴。除了音樂，我也熱衷於建立自己的官方網站，希望能和更多喜歡我音樂的人交流。</p>
-        <p>謝謝你願意認識我，未來我會持續努力，帶來更多好音樂！</p>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=作品2" alt="作品2圖片" />
+        <h3>個人創作歌曲</h3>
+        <p>融合多國文化元素，展現獨特風格與情感。</p>
       </div>
-    </section>
-
-    <!-- English Section -->
-    <section class="lang-section" data-lang="en" aria-label="English Content">
-      <h2>Welcome to my official website!</h2>
-      <p>I'm glad you're here. This is Aille's official personal website, where I share my music works, creative process, and life moments.</p>
-      <h2>Portfolio</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=Project+1" alt="Project 1 Cover" />
-          <h3>Covers Collection</h3>
-          <p>Covering songs in multiple languages including Korean, English, Japanese, and Romanian.</p>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=Project+2" alt="Project 2 Cover" />
-          <h3>Original Rap</h3>
-          <p>A unique style combining lyrical and rhythmic rap creation.</p>
-        </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=作品3" alt="作品3圖片" />
+        <h3>音樂錄影帶</h3>
+        <p>自導自演的音樂視頻與視覺藝術結合。</p>
       </div>
+    </div>
+    <h2>關於我</h2>
+    <p class="about-me">我從小在合唱團訓練，喜歡做和音與多語言歌唱。希望透過音樂和網站分享我的故事與熱情。<br><br>我喜歡翻唱韓文、英文、日文和羅馬尼亞的歌曲，經常使用電腦錄製並調整聲音。音樂是我生活的靈魂，期待未來有更多創作與大家分享。</p>
+  </section>
 
-      <h2>About Me</h2>
-      <div class="about-me">
-        <p>Hello, I'm Aille, a creator who loves to express inner feelings through music. My voice is warm and versatile, skilled in singing and rapping. Although I may not have the standard idol image, I believe sincere expression touches people's hearts.</p>
-        <p>I have trained in choir since childhood and enjoy finding resonance in music. Besides music, I'm passionate about building my official website to connect with more people who enjoy my music.</p>
-        <p>Thank you for getting to know me. I will keep working hard to bring more great music!</p>
+  <!-- English -->
+  <section class="lang-section" data-lang="en" aria-label="English content">
+    <h2>Welcome to my Official Website!</h2>
+    <p>Glad you’re here! I’m Aille, a multilingual singer passionate about music and creativity. Feel free to browse my portfolio and learn more about me.</p>
+    <h2>Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=Work+1" alt="Work 1 image" />
+        <h3>Music Covers Series</h3>
+        <p>Covers in Korean, English, Japanese, and Romanian languages.</p>
       </div>
-    </section>
-
-    <!-- Japanese Section -->
-    <section class="lang-section" data-lang="ja" aria-label="日本語コンテンツ">
-      <h2>私の公式ウェブサイトへようこそ！</h2>
-      <p>ここに来てくれてうれしいです。これはAilleの公式個人ウェブサイトで、音楽作品、制作過程、日々のことを共有しています。</p>
-      <h2>ポートフォリオ</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=作品1" alt="作品1カバー" />
-          <h3>カバーコレクション</h3>
-          <p>韓国語、英語、日本語、ルーマニア語など、複数の言語でのカバー作品。</p>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=作品2" alt="作品2カバー" />
-          <h3>オリジナルラップ</h3>
-          <p>叙情的かつリズミカルなラップで私の独特なスタイルを表現。</p>
-        </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=Work+2" alt="Work 2 image" />
+        <h3>Original Songs</h3>
+        <p>Fusing multicultural elements to express unique styles and emotions.</p>
       </div>
-
-      <h2>私について</h2>
-      <div class="about-me">
-        <p>こんにちは、私はAilleです。音楽を通して内面の感情を表現することが好きなクリエイターです。声は温かく多様で、歌とラップが得意です。標準的なアイドルイメージではありませんが、誠実な表現が人の心を動かすと信じています。</p>
-        <p>幼い頃から合唱団で音楽訓練を受けており、音楽の共鳴を楽しんでいます。音楽以外にも、公式ウェブサイトを作って私の音楽を好きな人と繋がることに熱心です。</p>
-        <p>私を知ってくれてありがとう。これからも頑張って素敵な音楽を届けます！</p>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=Work+3" alt="Work 3 image" />
+        <h3>Music Videos</h3>
+        <p>Self-directed and performed music videos combined with visual arts.</p>
       </div>
-    </section>
+    </div>
+    <h2>About Me</h2>
+    <p class="about-me">I trained in choir since childhood, loving harmonies and multilingual singing. I often record and edit songs on my computer. Music is the soul of my life, and I look forward to sharing more creations with everyone in the future.</p>
+  </section>
 
-    <!-- Korean Section -->
-    <section class="lang-section" data-lang="ko" aria-label="한국어 콘텐츠">
-      <h2>나의 공식 웹사이트에 오신 것을 환영합니다!</h2>
-      <p>여기에 와주셔서 기쁩니다. 여기는 Aille의 공식 개인 웹사이트로, 음악 작업, 창작 과정 및 일상을 공유합니다.</p>
-      <h2>포트폴리오</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/300x180?text=프로젝트1" alt="프로젝트1 커버" />
-          <h3>커버 컬렉션</h3>
-          <p>한국어, 영어, 일본어, 루마니아어 등 여러 언어로 된 커버 작품들.</p>
-        </
+  <!-- 日本語 -->
+  <section class="lang-section" data-lang="ja" aria-label="日本語コンテンツ">
+    <h2>私の公式ウェブサイトへようこそ！</h2>
+    <p>訪問してくれてありがとう。私はAille、多言語で歌う音楽と創作を愛する歌手です。ポートフォリオや自己紹介をご覧ください。</p>
+    <h2>作品集</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=作品1" alt="作品1の画像" />
+        <h3>音楽カバーシリーズ</h3>
+        <p>韓国語、英語、日本語、ルーマニア語の多様なカバー曲。</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=作品2" alt="作品2の画像" />
+        <h3>オリジナル曲</h3>
+        <p>多文化要素を融合した独特のスタイルと感情表現。</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=作品3" alt="作品3の画像" />
+        <h3>ミュージックビデオ</h3>
+        <p>自分で監督し演じたミュージックビデオと視覚芸術の融合。</p>
+      </div>
+    </div>
+    <h2>私について</h2>
+    <p class="about-me">子供の頃から合唱団で訓練し、ハーモニーと多言語での歌唱が好きです。コンピュータでよく録音し編集しています。音楽は私の人生の魂であり、これからも多くの作品を皆と共有したいと思っています。</p>
+  </section>
+
+  <!-- 한국어 -->
+  <section class="lang-section" data-lang="ko" aria-label="한국어 콘텐츠">
+    <h2>저의 공식 웹사이트에 오신 것을 환영합니다!</h2>
+    <p>방문해 주셔서 감사합니다. 저는 Aille, 음악과 창작을 사랑하는 다국어 가수입니다. 포트폴리오와 자기소개를 자유롭게 둘러보세요.</p>
+    <h2>포트폴리오</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=작품1" alt="작품1 이미지" />
+        <h3>음악 커버 시리즈</h3>
+        <p>한국어, 영어, 일본어, 루마니아어의 다양한 노래 커버.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=작품2" alt="작품2 이미지" />
+        <h3>개인 창작곡</h3>
+        <p>다문화 요소를 융합한 독특한 스타일과 감정 표현.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=작품3" alt="작품3 이미지" />
+        <h3>뮤직 비디오</h3>
+        <p>자체 연출 및 출연한 뮤직 비디오와 시각 예술의 결합.</p>
+      </div>
+    </div>
+    <h2>저에 대해</h2>
+    <p class="about-me">어릴 때부터 합창단에서 훈련했으며, 하모니와 다국어 노래를 좋아합니다. 컴퓨터로 자주 녹음하고 편집합니다. 음악은 제 삶의 영혼이며, 앞으로도 많은 작품을 모두와 공유하고 싶습니다.</p>
+  </section>
+
+  <!-- Français -->
+  <section class="lang-section" data-lang="fr" aria-label="Contenu en français">
+    <h2>Bienvenue sur mon site officiel !</h2>
+    <p>Ravi de votre visite ! Je suis Aille, une chanteuse multilingue passionnée de musique et de création. N’hésitez pas à parcourir mon portfolio et à en apprendre plus sur moi.</p>
+    <h2>Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=Travail+1" alt="Image Travail 1" />
+        <h3>Série de reprises musicales</h3>
+        <p>Reprises en coréen, anglais, japonais et roumain.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=Travail+2" alt="Image Travail 2" />
+        <h3>Chansons originales</h3>
+        <p>Fusion d’éléments multiculturels exprimant des styles et émotions uniques.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/300x180?text=Travail+3" alt="Image Travail 3" />
+        <h3>Clips musicaux</h3>
+        <p>Vidéos musicales auto-réalisées alliant arts visuels et musique.</p>
+      </div>
+    </div>
+    <h2>À propos de moi</h2>
+    <p class="about-me">Je me suis entraînée dans une chorale dès l’enfance, aimant les harmonies et le chant multilingue. J’enregistre souvent et édite mes chansons sur ordinateur. La musique est l’âme de ma vie, et j’espère partager davantage de créations avec tout le monde à l’avenir.</p>
+  </section>
+
+</main>
+
+<!-- 留言區 -->
+<section id="commentSection" aria-label="留言區">
+  <h2>留言區 (Comments)</h2>
+  <form id="commentForm" aria-label="留言表單">
+    <textarea id="commentInput" aria-label="輸入留言" placeholder="請在此輸入留言..." required></textarea>
+    <button type="submit" aria-label="送出留言">送出</button>
+  </form>
+  <div id="commentsList" aria-live="polite" aria-relevant="additions"></div>
+</section>
+
+<!-- 自動播放音樂 (古典樂) -->
+<audio id="backgroundAudio" src="https://cdn.pixabay.com/download/audio/2022/03/17/audio_54b28f77a9.mp3?filename=beautiful-piano-11254.mp3" autoplay loop muted></audio>
+
+<script>
+  // 禁止右鍵
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 語言切換邏輯
+  const langBtn = document.getElementById('langBtn');
+  const langMenu = document.getElementById('langMenu');
+  const langSections = document.querySelectorAll('.lang-section');
+
+  langBtn.addEventListener('click', () => {
+    const expanded = langBtn.getAttribute('aria-expanded') === 'true';
+    langBtn.setAttribute('aria-expanded', String(!expanded));
+    langMenu.classList.toggle('show');
+  });
+
+  langMenu.addEventListener('click', e => {
+    if(e.target.tagName === 'BUTTON'){
+      const selectedLang = e.target.getAttribute('data-lang');
+      // 切換顯示
+      langSections.forEach(section => {
+        if(section.getAttribute('data-lang') === selectedLang){
+          section.classList.add('active');
+          section.setAttribute('aria-hidden', 'false');
+        } else {
+          section.classList.remove('active');
+          section.setAttribute('aria-hidden', 'true');
+        }
+      });
+      langMenu.classList.remove('show');
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // 關閉語言選單點擊外部
+  document.addEventListener('click', (e) => {
+    if(!langBtn.contains(e.target) && !langMenu.contains(e.target)){
+      langMenu.classList.remove('show');
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // 留言儲存與顯示 (localStorage)
+  const commentForm = document.getElementById('commentForm');
+  const commentInput = document.getElementById('commentInput');
+  const commentsList = document.getElementById('commentsList');
+
+  function loadComments(){
+    const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    commentsList.innerHTML = '';
+    comments.forEach((comment, i) => {
+      const div = document.createElement('div');
+      div.classList.add('comment');
+      div.textContent = comment;
+      commentsList.appendChild(div);
+    });
+  }
+
+  commentForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = commentInput.value.trim();
+    if(text){
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      comments.push(text);
+      localStorage.setItem('comments', JSON.stringify(comments));
+      commentInput.value = '';
+      loadComments();
+    }
+  });
+
+  // 頁面載入時讀取留言
+  loadComments();
+
+  // 音樂自動播放 - 部分瀏覽器會禁止非靜音自動播放
+  const audio = document.getElementById('backgroundAudio');
+  audio.autoplay = true;  
+  });
+
+</script>
+
+</body>
+</html>
