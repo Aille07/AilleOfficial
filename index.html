@@ -1,202 +1,220 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aille Official</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/616/616408.png">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #d6f0ff, #ffffff);
-      margin: 0;
-      padding: 0;
-      cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat937.cur'), auto;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aille comment book</title>
+<style>
+  /* 天空藍背景 */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #87CEEB;
+    color: #003366;
+    user-select: none; /* 防止選取 */
+  }
 
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #87cefa;
-      border-radius: 5px;
-    }
+  /* 星星游標（天空藍色） */
+  body, textarea, button {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><polygon points="12,2 15,10 23,10 17,14 19,22 12,17 5,22 7,14 1,10 9,10" fill="%230099FF"/></svg>') 12 12, auto;
+  }
 
-    header {
-      background: #87cefa;
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
+  /* 捲軸美化-天空藍 */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #b0e0ff;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #3399ff;
+    border-radius: 10px;
+  }
 
-    header h1 {
-      font-family: 'Times New Roman', serif;
-      font-size: 3em;
-      text-shadow: 0 0 10px #fff, 0 0 20px #add8e6;
-    }
+  /* 語言選單樣式 */
+  #langBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #3399ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 18px;
+  }
+  #langBtn[aria-expanded="true"] {
+    background: #66b3ff;
+  }
+  #langMenu {
+    position: fixed;
+    top: 45px;
+    right: 10px;
+    background: #66b3ff;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    display: none;
+    z-index: 101;
+    min-width: 140px;
+  }
+  #langMenu.show {
+    display: block;
+  }
+  #langMenu button {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #langMenu button:hover {
+    background: #3399ff;
+  }
 
-    .language-selector {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-    }
+  /* 留言區 */
+  #commentSection {
+    max-width: 600px;
+    margin: 80px auto 40px;
+    background: #d0f0ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #3399ffaa;
+  }
+  #commentSection h2 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  #commentForm textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3399ff;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  #commentForm button {
+    margin-top: 10px;
+    width: 100%;
+    background: #3399ff;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #commentForm button:hover {
+    background: #66b3ff;
+  }
+  #commentsList {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #e0f4ff;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #3399ff;
+  }
+  #commentsList .comment {
+    padding: 8px;
+    border-bottom: 1px solid #3399ff;
+    white-space: pre-wrap;
+  }
+  #commentsList .comment:last-child {
+    border-bottom: none;
+  }
 
-    .language-selector button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.5em;
-    }
-
-    .language-menu {
-      display: none;
-      position: absolute;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      right: 0;
-      top: 40px;
-      z-index: 999;
-    }
-
-    .language-menu button {
-      display: block;
-      padding: 8px 15px;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .comment-section {
-      background-color: #e0f4ff;
-      padding: 30px;
-      border-radius: 10px;
-      margin: 40px;
-    }
-
-    .comment-section h2 {
-      color: #2a93d5;
-    }
-
-    .comment-section input,
-    .comment-section textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 5px;
-      border: 1px solid #b3dfff;
-      background-color: #f7fbff;
-    }
-
-    .comment-section button {
-      background-color: #58c3ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .comment-section button:hover {
-      background-color: #40a9e9;
-    }
-
-    footer {
-      background: #87cefa;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-    }
-  </style>
-  <script>
-    document.addEventListener("contextmenu", function(e) {
-      e.preventDefault();
-    });
-    document.addEventListener("keydown", function(e) {
-      if (e.ctrlKey && (e.key === "u" || e.key === "s")) {
-        e.preventDefault();
-      }
-    });
-  </script>
+  /* 多語言留言區塊切換 */
+  .lang-section {
+    display: none;
+  }
+  .lang-section.active {
+    display: block;
+  }
+</style>
 </head>
-<body>
-  <header>
-    <h1>Aille Official</h1>
-  </header>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 
-  <!-- 地球 icon 語言選單 -->
-  <div class="language-selector">
-    <button onclick="toggleLanguageMenu()">🌐</button>
-    <div class="language-menu" id="languageMenu">
-      <button onclick="switchLanguage('zh')">中文</button>
-      <button onclick="switchLanguage('en')">English</button>
-      <button onclick="switchLanguage('ja')">日本語</button>
-      <button onclick="switchLanguage('ko')">한국어</button>
-      <button onclick="switchLanguage('fr')">Français</button>
-    </div>
-  </div>
+<button id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="切換語言">🌍</button>
+<div id="langMenu" role="menu" aria-label="選擇語言">
+  <button role="menuitem" data-lang="zh">中文</button>
+  <button role="menuitem" data-lang="en">English</button>
+  <button role="menuitem" data-lang="fr">Français</button>
+  <button role="menuitem" data-lang="ja">日本語</button>
+  <button role="menuitem" data-lang="ko">한국어</button>
+  <button role="menuitem" data-lang="id">Bahasa Indonesia</button>
+</div>
 
-  <main>
-    <section class="comment-section">
-      <h2 id="commentTitle">留言區（Aille應援區）</h2>
-      <form id="commentForm">
-        <input type="text" id="name" placeholder="你的名字" required />
-        <textarea id="message" placeholder="想說什麼呢？" required></textarea>
-        <button type="submit">送出留言</button>
-      </form>
-      <div id="comments"></div>
-    </section>
-  </main>
+<section id="commentSection" aria-label="留言區">
 
-  <footer>
-    &copy; 2025 Aille Entertainment. All rights reserved.
-  </footer>
+  <!-- 中文留言 -->
+  <section class="lang-section active" data-lang="zh" aria-hidden="false">
+    <h2>留言區</h2>
+    <form id="commentFormZh" aria-label="中文留言表單">
+      <textarea id="commentInputZh" aria-label="輸入留言" placeholder="請在此輸入留言..." required></textarea>
+      <button type="submit" aria-label="送出留言">送出</button>
+    </form>
+    <div id="commentsListZh" aria-live="polite" aria-relevant="additions"></div>
+  </section>
 
-  <script>
-    // 語言切換功能
-    function toggleLanguageMenu() {
-      const menu = document.getElementById("languageMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
+  <!-- English Comment -->
+  <section class="lang-section" data-lang="en" aria-hidden="true">
+    <h2>Comments</h2>
+    <form id="commentFormEn" aria-label="English comment form">
+      <textarea id="commentInputEn" aria-label="Enter comment" placeholder="Write your comment here..." required></textarea>
+      <button type="submit" aria-label="Submit comment">Submit</button>
+    </form>
+    <div id="commentsListEn" aria-live="polite" aria-relevant="additions"></div>
+  </section>
 
-    function switchLanguage(lang) {
-      const title = document.getElementById("commentTitle");
-      const nameInput = document.getElementById("name");
-      const messageInput = document.getElementById("message");
-      const button = document.querySelector("form button");
+  <!-- 法文 commentaires -->
+  <section class="lang-section" data-lang="fr" aria-hidden="true">
+    <h2>Commentaires</h2>
+    <form id="commentFormFr" aria-label="Formulaire de commentaires en français">
+      <textarea id="commentInputFr" aria-label="Entrer un commentaire" placeholder="Écrivez votre commentaire ici..." required></textarea>
+      <button type="submit" aria-label="Envoyer le commentaire">Envoyer</button>
+    </form>
+    <div id="commentsListFr" aria-live="polite" aria-relevant="additions"></div>
+  </section>
 
-      const translations = {
-        zh: ["留言區（Aille應援區）", "你的名字", "想說什麼呢？", "送出留言"],
-        en: ["Support Messages for Aille", "Your name", "What do you want to say?", "Send"],
-        ja: ["応援メッセージ（Aille）", "お名前", "メッセージを入力してください", "送信"],
-        ko: ["응원 메시지 (Aille)", "이름", "메시지를 입력해주세요", "보내기"],
-        fr: ["Messages de soutien pour Aille", "Votre nom", "Que voulez-vous dire ?", "Envoyer"]
-      };
+  <!-- 日本語コメント -->
+  <section class="lang-section" data-lang="ja" aria-hidden="true">
+    <h2>コメント欄</h2>
+    <form id="commentFormJa" aria-label="日本語コメントフォーム">
+      <textarea id="commentInputJa" aria-label="コメント入力" placeholder="コメントを入力してください..." required></textarea>
+      <button type="submit" aria-label="コメント送信">送信</button>
+    </form>
+    <div id="commentsListJa" aria-live="polite" aria-relevant="additions"></div>
+  </section>
 
-      const [tTitle, tName, tMessage, tBtn] = translations[lang];
-      title.innerText = tTitle;
-      nameInput.placeholder = tName;
-      messageInput.placeholder = tMessage;
-      button.innerText = tBtn;
+  <!-- 한국어 댓글 -->
+  <section class="lang-section" data-lang="ko" aria-hidden="true">
+    <h2>댓글</h2>
+    <form id="commentFormKo" aria-label="한국어 댓글 폼">
+      <textarea id="commentInputKo" aria-label="댓글 입력" placeholder="댓글을 입력하세요..." required></textarea>
+      <button type="submit" aria-label="댓글 제출">제출</button>
+    </form>
+    <div id="commentsListKo" aria-live="polite" aria-relevant="additions"></div>
+  </section>
 
-      document.getElementById("languageMenu").style.display = "none";
-    }
+  <!-- 印尼文 Komentar -->
+  <section class="lang-section" data-lang="id" aria-hidden="true">
+    <h2>Komentar</h2>
+    <form id="commentFormId" aria-label="Formulir komentar Bahasa Indonesia">
+      <textarea id="commentInputId" aria-label="Masukkan komentar" placeholder="Tulis komentar Anda di sini..." required></textarea>
+      <button type="submit" aria-label="Kirim komentar">Kirim</button>
+</form>
+<div id="commentsListId" aria-live="polite" aria-relevant="additions"></div>
 
-    // 留言功能
-    document.getElementById("commentForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const message = document.getElementById("message").value;
+</section> </section> <script> const langBtn = document.getElementById('langBtn'); const langMenu = document.getElementById('langMenu'); const langSections = document.querySelectorAll('.lang-section'); langBtn.addEventListener('click', () => { const expanded = langBtn.getAttribute('aria-expanded') === 'true'; langBtn.setAttribute('aria-expanded', String(!expanded)); langMenu.classList.toggle('show'); }); langMenu.addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { const selectedLang = e.target.getAttribute('data-lang'); langSections.forEach(section => { if (section.getAttribute('data-lang') === selectedLang) { section.classList.add('active'); section.setAttribute('aria-hidden', 'false'); } else { section.classList.remove('active'); section.setAttribute('aria-hidden', 'true'); } }); langMenu.classList.remove('show'); langBtn.setAttribute('aria-expanded', 'false'); } }); // 加上所有留言表單功能 const forms = [ {formId: 'commentFormZh', inputId: 'commentInputZh', listId: 'commentsListZh'}, {formId: 'commentFormEn', inputId: 'commentInputEn', listId: 'commentsListEn'}, {formId: 'commentFormFr', inputId: 'commentInputFr', listId: 'commentsListFr'}, {formId: 'commentFormJa', inputId: 'commentInputJa', listId: 'commentsListJa'}, {formId: 'commentFormKo', inputId: 'commentInputKo', listId: 'commentsListKo'}, {formId: 'commentFormId', inputId: 'commentInputId', listId: 'commentsListId'}, ]; forms.forEach(({formId, inputId, listId}) => { const form = document.getElementById(formId); const input = document.getElementById(inputId); const list = document.getElementById(listId); form.addEventListener('submit', (e) => { e.preventDefault(); if (input.value.trim() !== "") { const newComment = document.createElement('div'); newComment.className = 'comment'; newComment.textContent = input.value; list.appendChild(newComment); input.value = ''; } }); });
+</script> 
 
-      const commentBox = document.createElement("div");
-      commentBox.innerHTML = `<p><strong>${name}</strong>：${message}</p>`;
-      document.getElementById("comments").appendChild(commentBox);
-
-      document.getElementById("commentForm").reset();
-    });
-  </script>
-</body>
-</html>
+</body> 
+</html> 
